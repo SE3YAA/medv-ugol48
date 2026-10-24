@@ -78,23 +78,38 @@ p{margin:0;text-wrap:pretty}
 .rule{animation-delay:.15s}.center h1{animation-delay:.25s}.center .sub{animation-delay:.35s}.center .btn{animation-delay:.45s}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
-/* стеклянная бронь на краю фото */
-.book{position:relative;z-index:3;margin:-118px auto 0;max-width:1180px;width:calc(100% - 48px);display:grid;grid-template-columns:1.25fr 1fr 1fr .9fr .9fr auto;border-radius:24px;background:rgba(22,24,27,.72);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
-.bf{padding:18px 22px;display:flex;flex-direction:column;justify-content:center;gap:8px;border-right:1px solid var(--line);min-width:0}
-.bf>span{font-size:13px;color:var(--muted);font-weight:600}
-.bv{font-size:16px;font-weight:600;display:flex;align-items:center;gap:12px}
-.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(242,238,231,.07);border-radius:999px;padding:4px}
-.seg button{border:0;border-radius:999px;min-height:38px;background:transparent;color:var(--muted);font:700 13px var(--body);cursor:pointer}
+/* окно брони */
+.modal{position:fixed;inset:0;z-index:70;background:rgba(8,8,9,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;animation:fadein .3s ease both}
+.modal[hidden]{display:none}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes sheet{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
+.sheet{position:relative;width:min(920px,100%);max-height:calc(100vh - 48px);overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);background:var(--panel);border:1px solid var(--line);border-radius:28px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);animation:sheet .45s cubic-bezier(.16,1,.3,1) both}
+.mph{position:relative;min-height:100%;background:var(--panel2)}
+.mph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,11,12,.75),transparent 55%)}
+.mph .mt{position:absolute;left:24px;right:24px;bottom:22px;z-index:1;display:flex;flex-direction:column;gap:6px}
+.mph .mt h3{font-size:clamp(28px,3vw,40px)}
+.mph .mt span{color:#ddd8cf;font-size:14px}
+.mbody{padding:30px 30px 26px;display:flex;flex-direction:column;gap:6px}
+.mbody .mh{font:500 24px var(--serif);margin-bottom:12px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(242,238,231,.07);border-radius:999px;padding:4px;margin-bottom:10px}
+.seg button{border:0;border-radius:999px;min-height:42px;background:transparent;color:var(--muted);font:700 14px var(--body);cursor:pointer}
 .seg button.on{background:var(--ink);color:var(--bg)}
-.step{display:flex;align-items:center;gap:12px}
-.step button{width:36px;height:36px;border-radius:50%;border:1px solid rgba(242,238,231,.25);background:transparent;color:var(--ink);font:500 18px var(--body);cursor:pointer}
+.mrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.mrow>span{color:var(--muted);font-size:15px}
+.mrow b{font-weight:700}
+.step{display:flex;align-items:center;gap:14px}
+.step button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(242,238,231,.25);background:transparent;color:var(--ink);font:500 19px var(--body);cursor:pointer}
 .step button:hover{border-color:var(--gold);color:var(--gold)}
-.step b{min-width:18px;text-align:center;font-variant-numeric:tabular-nums}
-.date{background:transparent;border:0;color:var(--ink);font:600 16px var(--body);color-scheme:dark;padding:0;min-height:36px;width:100%}
-.bgo{padding:12px;display:flex;align-items:center}
-.bgo .btn{flex-direction:column;gap:0;padding:12px 26px;border-radius:18px;min-height:64px;line-height:1.25}
-.bgo .btn b{font-size:19px;font-variant-numeric:tabular-nums}
-.bgo .btn small{font-size:12px;font-weight:600;opacity:.75}
+.step b{min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
+.date{background:transparent;border:1px solid rgba(242,238,231,.22);border-radius:10px;color:var(--ink);font:600 15px var(--body);color-scheme:dark;padding:8px 10px;min-height:42px}
+.mtotal{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:16px}
+.mtotal span{color:var(--muted)}
+.mtotal b{font:500 40px/1 var(--serif);color:var(--gold);font-variant-numeric:tabular-nums}
+.mbody .btn{margin-top:16px;width:100%;justify-content:space-between}
+.mnote{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
+.mx{position:absolute;top:14px;right:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(14,15,17,.6);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mx svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
 
 /* преимущества */
 .perks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -208,9 +223,6 @@ p{margin:0;text-wrap:pretty}
 
 /* ноутбук */
 @media (max-width:1240px){
-  .book{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .bf{border-bottom:1px solid var(--line)}
-  .bgo .btn{width:100%}
   .menu{display:none}
 }
 /* планшет */
@@ -234,9 +246,10 @@ p{margin:0;text-wrap:pretty}
   .nav-r .btn{display:none}
   .center{padding:0 18px 150px}
   .center .sub{font-size:15px}
-  .book{margin:12px auto 0;width:calc(100% - 24px);grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:22px}
-  .bf{padding:14px 16px}
-  .bf.full,.bgo{grid-column:1 / -1}
+  .modal{padding:0;align-items:flex-end}
+  .sheet{grid-template-columns:minmax(0,1fr);border-radius:24px 24px 0 0;max-height:94vh}
+  .mph{min-height:200px}
+  .mbody{padding:22px 20px calc(22px + env(safe-area-inset-bottom,0px))}
   .perks{grid-template-columns:minmax(0,1fr)}
   .perk{padding:20px 0!important;border-left:0!important;border-top:1px solid var(--line)}
   .perk:first-child{border-top:0}
@@ -268,7 +281,7 @@ p{margin:0;text-wrap:pretty}
       <nav class="menu" aria-label="Разделы"><a href="#houses">Дома</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a></nav>
       <div class="nav-r">
         <a class="tel" href="tel:+79056880611">8 905 688-06-11</a>
-        <a class="btn" href="#book">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+        <button class="btn" data-book="0">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button>
         <button class="burger" id="burger" aria-label="Открыть меню"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       </div>
     </div>
@@ -281,15 +294,6 @@ p{margin:0;text-wrap:pretty}
     </div>
   </div>
 
-  <!-- 2. БРОНЬ -->
-  <div class="book" id="book" role="form" aria-label="Расчёт брони">
-    <div class="bf full"><span>Дом</span><div class="seg" id="seg"><button class="on" data-h="0">A-frame</button><button data-h="1">Barnhouse</button></div></div>
-    <label class="bf"><span>Заезд с 15:00</span><input class="date" type="date" id="din"></label>
-    <div class="bf"><span>Выезд до 12:00</span><div class="bv" id="dout">—</div></div>
-    <div class="bf"><span>Ночей</span><div class="bv step"><button data-n="-1" aria-label="Меньше ночей">−</button><b id="nights">2</b><button data-n="1" aria-label="Больше ночей">+</button></div></div>
-    <div class="bf"><span id="gl">Гостей, до 4</span><div class="bv step"><button data-g="-1" aria-label="Меньше гостей">−</button><b id="guests">2</b><button data-g="1" aria-label="Больше гостей">+</button></div></div>
-    <div class="bgo"><a class="btn" href="tel:+79056880611"><b id="total">16 000 ₽</b><small>Забронировать</small></a></div>
-  </div>
 </section>
 
 <!-- преимущества -->
@@ -318,7 +322,7 @@ p{margin:0;text-wrap:pretty}
           <h3>A-frame</h3>
           <div class="specs"><span>до 4 гостей</span><span>спальня под крышей</span><span>панорамное окно</span></div>
           <p>Треугольный дом для пары или небольшой компании: двуспальная кровать наверху, диван-кровать, кухня с кофемашиной, терраса с видом на сосны.</p>
-          <div class="cfoot"><div><small>от</small><b>8 000 ₽</b></div><a class="round" href="#book" data-pick="0" aria-label="Посчитать стоимость A-frame"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+          <div class="cfoot"><div><small>от</small><b>8 000 ₽</b></div><button class="btn" data-book="0">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
         </div>
       </article>
       <article class="card">
@@ -327,7 +331,7 @@ p{margin:0;text-wrap:pretty}
           <h3>Barnhouse</h3>
           <div class="specs"><span>до 8 гостей</span><span>3 спальни</span><span>стол на 6</span></div>
           <p>Просторный дом для большой компании: три спальни, кухня-гостиная с большим столом и терраса с гирляндами для долгих вечеров.</p>
-          <div class="cfoot"><div><small>от</small><b>10 000 ₽</b></div><a class="round" href="#book" data-pick="1" aria-label="Посчитать стоимость Barnhouse"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+          <div class="cfoot"><div><small>от</small><b>10 000 ₽</b></div><button class="btn" data-book="1">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
         </div>
       </article>
       <article class="card">
@@ -336,7 +340,7 @@ p{margin:0;text-wrap:pretty}
           <h3>Беседки и баня</h3>
           <div class="specs"><span>гриль</span><span>подогрев</span><span>10:00–22:00</span></div>
           <p>Беседки с грилем работают круглый год. Баня до 6 гостей в двух шагах от домов, от 3 часов, от 1 000 ₽ в час.</p>
-          <div class="cfoot"><div><small>беседка от</small><b>800 ₽/час</b></div><a class="round" href="tel:+79056880611" aria-label="Позвонить и забронировать беседку"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+          <div class="cfoot"><div><small>беседка от</small><b>800 ₽/час</b></div><a class="btn" href="tel:+79056880611">Позвонить <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a></div>
         </div>
       </article>
     </div>
@@ -431,9 +435,27 @@ p{margin:0;text-wrap:pretty}
   </div>
 </section>
 
+<div class="modal" id="bm" hidden role="dialog" aria-modal="true" aria-labelledby="bmTitle">
+  <div class="sheet">
+    <button class="mx" id="bmX" aria-label="Закрыть окно брони"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="mph"><img id="bmImg" src="aframe-hammock.jpg" alt=""><div class="mt"><h3 id="bmTitle">A-frame</h3><span id="bmCap">до 4 гостей, спальня под крышей</span></div></div>
+    <div class="mbody">
+      <div class="mh">Бронирование</div>
+      <div class="seg" id="seg"><button class="on" data-h="0">A-frame</button><button data-h="1">Barnhouse</button></div>
+      <label class="mrow"><span>Заезд с 15:00</span><input class="date" type="date" id="din"></label>
+      <div class="mrow"><span>Выезд до 12:00</span><b id="dout">—</b></div>
+      <div class="mrow"><span>Ночей</span><div class="step"><button data-n="-1" aria-label="Меньше ночей">−</button><b id="nights">2</b><button data-n="1" aria-label="Больше ночей">+</button></div></div>
+      <div class="mrow"><span id="gl">Гостей, до 4</span><div class="step"><button data-g="-1" aria-label="Меньше гостей">−</button><b id="guests">2</b><button data-g="1" aria-label="Больше гостей">+</button></div></div>
+      <div class="mtotal"><span>Итого</span><b id="total">16 000 ₽</b></div>
+      <a class="btn" href="tel:+79056880611">Позвонить и забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+      <p class="mnote">8 905 688-06-11 или 8 960 144-77-55. Подтвердим свободные даты по телефону.</p>
+    </div>
+  </div>
+</div>
+
 <div class="drawer" id="drawer" hidden role="dialog" aria-label="Меню">
   <button class="x" id="drawerX" aria-label="Закрыть меню"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <a href="#houses">Дома</a><a href="#book">Бронирование</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
+  <a href="#houses">Дома</a><a href="#houses" data-book="0">Бронирование</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
   <a href="tel:+79056880611" style="color:var(--gold)">8 905 688-06-11</a>
 </div>
 
@@ -453,10 +475,10 @@ p{margin:0;text-wrap:pretty}
   $('burger').onclick=function(){$('drawer').hidden=false;document.body.style.overflow='hidden'};
   function closeDrawer(){$('drawer').hidden=true;document.body.style.overflow=''}
   $('drawerX').onclick=closeDrawer;
-  $('drawer').addEventListener('click',function(e){if(e.target.tagName==='A')closeDrawer()});
+  $('drawer').addEventListener('click',function(e){if(e.target.tagName==='A'&&!e.target.hasAttribute('data-book'))closeDrawer()});
 
   // бронь
-  var H=[{base:8000,max:4},{base:10000,max:8}],s={h:0,n:2,g:2};
+  var H=[{base:8000,max:4,img:'aframe-hammock',t:'A-frame',cap:'до 4 гостей, спальня под крышей'},{base:10000,max:8,img:'hero-barn',t:'Barnhouse',cap:'до 8 гостей, три спальни'}],s={h:0,n:2,g:2};
   var iso=function(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
   var d0=new Date();d0.setDate(d0.getDate()+7);$('din').value=iso(d0);$('din').min=iso(new Date());
   function calc(){
@@ -466,13 +488,18 @@ p{margin:0;text-wrap:pretty}
     var d=new Date($('din').value+'T12:00:00');d.setDate(d.getDate()+s.n);
     $('dout').textContent=isNaN(d)?'—':d.toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
     [].forEach.call($('seg').children,function(b,i){b.classList.toggle('on',i===s.h)});
+    $('bmImg').src=IM(h.img);$('bmImg').alt=h.t;$('bmTitle').textContent=h.t;$('bmCap').textContent=h.cap;
   }
   $('seg').onclick=function(e){var b=e.target.closest('[data-h]');if(b){s.h=+b.dataset.h;calc()}};
-  $('book').addEventListener('click',function(e){var b=e.target.closest('[data-n],[data-g]');if(!b)return;
+  $('bm').addEventListener('click',function(e){if(e.target===this){closeBook();return}var b=e.target.closest('[data-n],[data-g]');if(!b)return;
     if(b.dataset.n)s.n=Math.max(1,Math.min(14,s.n+ +b.dataset.n));
     if(b.dataset.g)s.g=Math.max(1,Math.min(H[s.h].max,s.g+ +b.dataset.g));calc()});
   $('din').onchange=calc;
-  document.querySelectorAll('[data-pick]').forEach(function(a){a.addEventListener('click',function(){s.h=+a.dataset.pick;calc()})});
+  var lastB=null;
+  function openBook(i){lastB=document.activeElement;s.h=i;calc();closeDrawer();$('bm').hidden=false;document.body.style.overflow='hidden';$('bmX').focus()}
+  function closeBook(){$('bm').hidden=true;document.body.style.overflow='';if(lastB)lastB.focus()}
+  $('bmX').onclick=closeBook;
+  document.querySelectorAll('[data-book]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openBook(+b.dataset.book)})});
   calc();
 
   // вопросы
@@ -500,7 +527,7 @@ p{margin:0;text-wrap:pretty}
   function step(d){ci=(ci+d+cur.length)%cur.length;show()}
   $('lbX').onclick=close;$('lbP').onclick=function(){step(-1)};$('lbN').onclick=function(){step(1)};
   $('lb').onclick=function(e){if(e.target===this)close()};
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(!$('lb').hidden)close();if(!$('drawer').hidden)closeDrawer()}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(!$('lb').hidden)close();if(!$('drawer').hidden)closeDrawer();if(!$('bm').hidden)closeBook()}
     if($('lb').hidden)return;if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
   var x0=null;$('lb').addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
   $('lb').addEventListener('touchend',function(e){if(x0==null)return;var dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>50)step(dx<0?1:-1)});
