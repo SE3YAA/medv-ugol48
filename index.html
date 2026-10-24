@@ -263,6 +263,60 @@ html.fx .final>img{scale:var(--fs,1.2)}
 .drawer .x{position:absolute;top:calc(22px + env(safe-area-inset-top,0px));right:24px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line2);background:none;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center}
 .drawer .x svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
 
+/* приложение: текст слева, три телефона справа; на телефоне телефоны между заголовком и списком */
+.appx-box{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-areas:"hd ph" "bd ph";grid-template-rows:auto 1fr;column-gap:48px;
+  padding:72px 64px;border-radius:30px;border:1px solid var(--line);background:radial-gradient(ellipse 55% 60% at 78% 50%,rgba(210,173,115,.16),transparent 70%),var(--panel)}
+.appx-hd{grid-area:hd;display:flex;flex-direction:column;gap:18px}
+.appx-hd h2{max-width:16ch}
+.appx-bd{grid-area:bd;display:flex;flex-direction:column;gap:30px;padding-top:34px}
+.appx-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 28px}
+.appx-li{display:flex;flex-direction:column;gap:12px}
+.appx-li b{display:block;font-weight:700;margin-bottom:2px}
+.appx-li span{font-size:14px;color:var(--muted)}
+.appx-cta{display:flex;flex-wrap:wrap;gap:12px}
+.store{position:relative;display:inline-flex;align-items:center;gap:12px;min-height:60px;padding:10px 22px 10px 16px;border-radius:18px;border:0;background:var(--ink);color:var(--bg);font:700 16px/1.2 var(--body);text-align:left;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.store:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
+.store svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.store small{display:block;font:600 12px/1.3 var(--body);opacity:.72}
+.store .soon{position:absolute;top:-9px;right:-8px;padding:3px 9px;border-radius:999px;background:var(--gold);color:var(--gold-ink);font:700 11px/1.3 var(--body)}
+.appx[data-live="0"] .store{cursor:default}
+.appx[data-live="0"] .store:hover{transform:none;box-shadow:none}
+.appx[data-live="1"] .soon,.appx[data-live="1"] .soon-only,.appx[data-live="0"] .live-only{display:none}
+.appx-note{font-size:14px;color:var(--muted);max-width:52ch;transition:color .3s}
+.appx-note a{color:var(--ink);font-weight:700;text-decoration:none;white-space:nowrap}
+.appx-note.ping{color:var(--gold-text)}
+.appx-qr{display:flex;align-items:center;gap:16px;max-width:380px;padding:12px;border:1px solid var(--line);border-radius:20px}
+.appx-qr .qr{width:96px;height:96px;flex:none;border-radius:12px;background:#fff;padding:8px;display:flex;align-items:center;justify-content:center}
+.appx-qr .qr svg{width:100%;height:100%;display:block}
+.appx-qr span{font-size:14px;color:var(--muted)}
+.appx-qr a{color:var(--ink);font-weight:600;word-break:break-all}
+/* три телефона */
+.appx-ph{grid-area:ph;position:relative;min-height:640px;--sx:172px}
+.appx-ph::before{content:"";position:absolute;left:50%;top:52%;width:70%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(210,173,115,.22),transparent 65%);filter:blur(10px);z-index:-1}
+.phone{position:absolute;left:50%;top:50%;width:var(--pw);aspect-ratio:1/2.083;margin:0;padding:calc(var(--pw)*.034);border-radius:calc(var(--pw)*.16);
+  background:linear-gradient(150deg,#3a3d42,#0c0d0f 45%,#1d1f23);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 0 0 1px rgba(0,0,0,.5),0 60px 90px -40px rgba(0,0,0,.8);
+  translate:calc(-50% + var(--x,0px)) calc(-50% + var(--y,0px));rotate:var(--r,0deg)}
+.phone::before{content:"";position:absolute;z-index:1;top:calc(var(--pw)*.058);left:50%;translate:-50% 0;width:29%;height:calc(var(--pw)*.08);border-radius:999px;background:#000}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:calc(var(--pw)*.128);background:#111}
+.phone .scr-l{display:none}
+:root[data-mu-theme="light"] .phone .scr-l{display:block}
+:root[data-mu-theme="light"] .phone .scr-d{display:none}
+.p-c{--pw:272px;z-index:2}
+.p-l,.p-r{--pw:232px;--y:36px;z-index:1}
+.p-l{--x:calc(var(--sx)*-1);--r:-7deg}
+.p-r{--x:var(--sx);--r:7deg}
+.p-l img,.p-r img{filter:brightness(.86)}
+html.fx .p-l{--x:calc(var(--sx)*-1*var(--ap,1));--r:calc(-7deg*var(--ap,1))}
+html.fx .p-r{--x:calc(var(--sx)*var(--ap,1));--r:calc(7deg*var(--ap,1))}
+html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
+/* окно установки */
+.asheet{grid-template-columns:minmax(0,1fr);width:min(500px,100%)}
+.asheet .mbody{padding:34px 30px 28px}
+.asteps{list-style:none;margin:6px 0 4px;padding:0;counter-reset:s;display:flex;flex-direction:column}
+.asteps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.asteps li::before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold-text);color:var(--gold-text);font:600 14px/28px var(--body);text-align:center}
+.asteps b{font-weight:700}
+
 /* ноутбук */
 @media (max-width:1240px){
   .menu{display:none}
@@ -310,6 +364,24 @@ html.fx .final>img{scale:var(--fs,1.2)}
   .final .in{padding:40px 22px 26px}
   .lb{padding:64px 8px}
 }
+/* приложение на планшете и телефоне */
+@media (max-width:1024px){
+  .appx-box{grid-template-columns:minmax(0,1fr);grid-template-areas:"hd" "ph" "bd";grid-template-rows:none;padding:56px 40px}
+  .appx-ph{min-height:600px;margin-top:20px}
+  .appx-bd{padding-top:12px}
+  .appx-qr{display:none}
+}
+@media (max-width:680px){
+  .appx>.wrap{padding-left:8px;padding-right:8px}
+  .appx-box{padding:40px 20px 30px;border-radius:24px}
+  .appx-ph{min-height:470px;margin:6px -12px 0;--sx:112px}
+  .p-c{--pw:206px}
+  .p-l,.p-r{--pw:158px;--y:24px}
+  .appx-list{grid-template-columns:minmax(0,1fr);gap:20px}
+  .appx-li{flex-direction:row;gap:16px}
+  .store{flex:1 1 200px}
+  .asheet .mbody{padding:24px 20px calc(24px + env(safe-area-inset-bottom,0px))}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -321,7 +393,7 @@ html.fx .final>img{scale:var(--fs,1.2)}
     <img class="bgimg" src="hero-aframe.jpg" alt="A-frame с золотой подсветкой среди сосен">
     <div class="nav">
       <a class="logo" href="#top">Медвежий угол</a>
-      <nav class="menu" aria-label="Разделы"><a href="#houses">Дома</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a></nav>
+      <nav class="menu" aria-label="Разделы"><a href="#houses">Дома</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#app">Приложение</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a></nav>
       <div class="nav-r">
         <a class="tel" href="tel:+79056880611">8 905 688-06-11</a>
         <button class="theme" id="themeBtn" aria-label="Переключить тему"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
@@ -457,6 +529,37 @@ html.fx .final>img{scale:var(--fs,1.2)}
   </div>
 </section>
 
+<!-- приложение для гостей -->
+<section class="sec appx" id="app" style="padding-top:0" data-live="0">
+  <div class="wrap">
+    <div class="appx-box">
+      <div class="appx-hd">
+        <h2>Медвежий угол в&nbsp;вашем телефоне</h2>
+        <p class="lead">Приложение для гостей базы. Баня, заказы к дому и связь с администратором в пару касаний, без звонков и ожидания.</p>
+      </div>
+      <div class="appx-ph" id="appPh" aria-label="Экраны приложения">
+        <figure class="phone p-l"><img class="scr-d" src="app-shop-d.jpg" alt="Экран «Услуги»: баня и заказы к дому" loading="lazy"><img class="scr-l" src="app-shop-l.jpg" alt="Экран «Услуги»: баня и заказы к дому" loading="lazy"></figure>
+        <figure class="phone p-r"><img class="scr-d" src="app-chat-d.jpg" alt="Экран чата с администратором" loading="lazy"><img class="scr-l" src="app-chat-l.jpg" alt="Экран чата с администратором" loading="lazy"></figure>
+        <figure class="phone p-c"><img class="scr-d" src="app-home-d.jpg" alt="Главный экран гостя: дом, даты и заказы" loading="lazy"><img class="scr-l" src="app-home-l.jpg" alt="Главный экран гостя: дом, даты и заказы" loading="lazy"></figure>
+      </div>
+      <div class="appx-bd">
+        <ul class="appx-list">
+          <li class="appx-li"><span class="ico"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg></span><div><b>Баня и заказы к дому</b><span>Выберите время бани и закажите нужное прямо к дому или беседке.</span></div></li>
+          <li class="appx-li"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><div><b>Чат с администратором</b><span>Пишите в приложении: подскажем, принесём, поможем.</span></div></li>
+          <li class="appx-li"><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg></span><div><b>Уведомления</b><span>Сообщим, когда баня растоплена, заказ в пути или пришёл ответ.</span></div></li>
+          <li class="appx-li"><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><div><b>Брони в одном месте</b><span>Даты, дом и счёт за услуги всегда под рукой.</span></div></li>
+        </ul>
+        <div class="appx-cta" id="appCta">
+          <button class="store" data-os="ios"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="3"/><path d="M10.5 5.5h3"/></svg><span><small>Установить</small>на iPhone</span><em class="soon">скоро</em></button>
+          <button class="store" data-os="android"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/></svg><span><small>Установить</small>на Android</span><em class="soon">скоро</em></button>
+        </div>
+        <p class="appx-note soon-only" id="appNote">Запускаем совсем скоро. А пока забронировать дом можно по телефону <a href="tel:+79056880611">8 905 688-06-11</a>.</p>
+        <div class="appx-qr live-only"><div class="qr" id="appQr" aria-hidden="true"></div><span>Наведите камеру телефона на код, чтобы открыть приложение.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- вопросы -->
 <section class="sec" id="faq" style="padding-top:0">
   <div class="wrap faq-wrap">
@@ -499,9 +602,22 @@ html.fx .final>img{scale:var(--fs,1.2)}
   </div>
 </div>
 
+<div class="modal" id="am" hidden role="dialog" aria-modal="true" aria-labelledby="amTitle">
+  <div class="sheet asheet">
+    <button class="mx" id="amX" aria-label="Закрыть окно установки"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="mbody">
+      <div class="mh" id="amTitle">Установка приложения</div>
+      <div class="seg" id="aseg"><button data-os="ios" class="on">iPhone</button><button data-os="android">Android</button></div>
+      <ol class="asteps" id="asteps"></ol>
+      <a class="btn" id="amGo" href="#" target="_blank" rel="noopener">Открыть приложение <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+      <p class="mnote">Магазин приложений не нужен: значок появится на экране телефона, как у обычного приложения.</p>
+    </div>
+  </div>
+</div>
+
 <div class="drawer" id="drawer" hidden role="dialog" aria-label="Меню">
   <button class="x" id="drawerX" aria-label="Закрыть меню"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <a href="#houses">Дома</a><a href="#houses" data-book="0">Бронирование</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
+  <a href="#houses">Дома</a><a href="#houses" data-book="0">Бронирование</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#app">Приложение</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
   <a href="tel:+79056880611" style="color:var(--gold-text)">8 905 688-06-11</a>
 </div>
 
@@ -557,6 +673,34 @@ html.fx .final>img{scale:var(--fs,1.2)}
   document.querySelectorAll('[data-book]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openBook(+b.dataset.book)})});
   calc();
 
+  // приложение. Когда приложение переедет на российский сервер: live:true и новая ссылка в url
+  var APP={url:'https://se3yaa.github.io/medvezhiy-ugol/',live:false};
+  var ua=navigator.userAgent,myOs=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)?'ios':/Android/i.test(ua)?'android':'';
+  var STEPS={ios:['Откройте приложение в <b>Safari</b> кнопкой ниже.','Нажмите <b>«Поделиться»</b> внизу экрана.','Выберите <b>«На экран „Домой“»</b> и нажмите «Добавить».'],
+             android:['Откройте приложение в <b>Chrome</b> кнопкой ниже.','Нажмите <b>⋮</b> в правом верхнем углу.','Выберите <b>«Установить приложение»</b> или «Добавить на главный экран».']};
+  var appOs='ios',lastA=null;
+  $('app').setAttribute('data-live',APP.live?'1':'0');
+  if(myOs==='android')$('appCta').insertBefore($('appCta').children[1],$('appCta').children[0]);
+  function appRender(){[].forEach.call($('aseg').children,function(b){b.classList.toggle('on',b.dataset.os===appOs)});
+    $('asteps').innerHTML=STEPS[appOs].map(function(t){return '<li><span>'+t+'</span></li>'}).join('');
+    $('amTitle').textContent=appOs==='ios'?'Установка на iPhone':'Установка на Android';$('amGo').href=APP.url}
+  function openApp(o){lastA=document.activeElement;appOs=o;appRender();closeDrawer();$('am').hidden=false;document.body.style.overflow='hidden';$('amX').focus()}
+  function closeApp(){$('am').hidden=true;document.body.style.overflow='';if(lastA)lastA.focus()}
+  $('amX').onclick=closeApp;
+  $('am').addEventListener('click',function(e){if(e.target===this)closeApp()});
+  $('aseg').onclick=function(e){var b=e.target.closest('[data-os]');if(b){appOs=b.dataset.os;appRender()}};
+  $('appCta').onclick=function(e){var b=e.target.closest('.store');if(!b)return;
+    if(APP.live){openApp(b.dataset.os);return}
+    var n=$('appNote');n.classList.remove('ping');void n.offsetWidth;n.classList.add('ping');setTimeout(function(){n.classList.remove('ping')},1600)};
+  if(!APP.live)[].forEach.call(document.querySelectorAll('.store'),function(b){b.setAttribute('aria-describedby','appNote')});
+  // QR-код для компьютера: библиотека грузится, только когда приложение открыто для гостей
+  if(APP.live&&matchMedia('(min-width:1025px)').matches){
+    var qrFail=function(){$('appQr').parentNode.querySelector('span').innerHTML='Откройте на телефоне: <a href="'+APP.url+'" target="_blank" rel="noopener">'+APP.url.replace(/^https?:\/\//,'')+'</a>';$('appQr').style.display='none'};
+    var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+    sc.onload=function(){try{var q=qrcode(0,'M');q.addData(APP.url);q.make();$('appQr').innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true})}catch(e){qrFail()}};
+    sc.onerror=qrFail;document.head.appendChild(sc);
+  }
+
   // вопросы
   var FAQ=[['Можно с питомцами?','К сожалению, нет: с животными на базу нельзя. Штраф за нарушение 10 000 ₽.'],['Есть мангал и шампуры?','Да, всё есть. Приезжайте с мясом, остальное найдётся.'],['Можно устроить праздник?','Да, поможем с декором для дня рождения, предложения или годовщины.'],['До скольки можно шуметь?','Громкая музыка на улице до 22:00, дальше в лесу тишина. Штраф за нарушение 10 000 ₽.'],['Во сколько заезд и выезд?','Заезд с 15:00 до 16:00, выезд до 12:00. Ранний заезд или поздний выезд +2 000 ₽.'],['Можно поставить палатку или позвать друзей?','На территории только гости, указанные в брони. Палатки и дополнительные спальные места запрещены.']];
   $('qa').innerHTML=FAQ.map(function(f,i){return '<button class="q" aria-expanded="'+(i===0)+'" data-q="'+i+'">'+f[0]+'<i>+</i></button><p class="a"'+(i===0?'':' hidden')+'>'+f[1]+'</p>'}).join('');
@@ -582,7 +726,7 @@ html.fx .final>img{scale:var(--fs,1.2)}
   function step(d){ci=(ci+d+cur.length)%cur.length;show()}
   $('lbX').onclick=close;$('lbP').onclick=function(){step(-1)};$('lbN').onclick=function(){step(1)};
   $('lb').onclick=function(e){if(e.target===this)close()};
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(!$('lb').hidden)close();if(!$('drawer').hidden)closeDrawer();if(!$('bm').hidden)closeBook()}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(!$('lb').hidden)close();if(!$('drawer').hidden)closeDrawer();if(!$('bm').hidden)closeBook();if(!$('am').hidden)closeApp()}
     if($('lb').hidden)return;if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
   var x0=null;$('lb').addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
   $('lb').addEventListener('touchend',function(e){if(x0==null)return;var dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>50)step(dx<0?1:-1)});
@@ -595,11 +739,11 @@ html.fx .final>img{scale:var(--fs,1.2)}
   // заголовки по словам
   document.querySelectorAll('.sec h2, .band h2, .final h2').forEach(function(h){
     if(h.children.length)return;var i=0;
-    h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="w"><span style="--i:'+(i++)+'">'+w+'</span></span>'}).join(' ');
+    h.innerHTML=h.textContent.trim().split(/[ \t\n\r]+/).map(function(w){return '<span class="w"><span style="--i:'+(i++)+'">'+w+'</span></span>'}).join(' ');
     h.classList.add('sh');
   });
   // появление волной
-  [['.perk',0.08],['.card',0.1],['.ex',0.08],['.st',0.08],['.num',0.08],['.sv',0.06],['.split .ph',0],['.head p',0.1]].forEach(function(g){
+  [['.perk',0.08],['.card',0.1],['.ex',0.08],['.st',0.08],['.num',0.08],['.sv',0.06],['.split .ph',0],['.head p',0.1],['.appx-hd .lead',0.1],['.appx-li',0.08],['.appx-cta',0]].forEach(function(g){
     document.querySelectorAll(g[0]).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(i%4)*g[1]+'s')});
   });
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.12});
@@ -607,7 +751,7 @@ html.fx .final>img{scale:var(--fs,1.2)}
   // параллакс внутри фото
   document.querySelectorAll('.ex img,.split .ph img').forEach(function(im){im.classList.add('px')});
   var pxs=[].slice.call(document.querySelectorAll('.px'));
-  var frame=document.querySelector('.frame'),band=$('band'),bmedia=band.querySelector('.band-stick'),fin=document.querySelector('.final');
+  var frame=document.querySelector('.frame'),band=$('band'),bmedia=band.querySelector('.band-stick'),fin=document.querySelector('.final'),aph=$('appPh');
   var mob=function(){return innerWidth<681};
   var ticking=false;
   function frameFx(){
@@ -623,6 +767,8 @@ html.fx .final>img{scale:var(--fs,1.2)}
     // параллакс
     pxs.forEach(function(im){var b=im.parentNode.getBoundingClientRect();if(b.bottom<-50||b.top>vh+50)return;
       var c=(b.top+b.height/2-vh/2)/vh;im.style.setProperty('--py',(-c*b.height*0.1).toFixed(1)+'px')});
+    // телефоны приложения расходятся веером
+    var ar=aph.getBoundingClientRect();if(ar.top<vh+60&&ar.bottom>-60){aph.style.setProperty('--ap',ease(clamp((vh-ar.top)/(vh*0.85))).toFixed(3))}
     // финал
     var fr=fin.getBoundingClientRect();if(fr.top<vh&&fr.bottom>0){var q=clamp(1-fr.top/vh);fin.style.setProperty('--fs',(1.2-0.2*ease(q)).toFixed(4))}
   }
