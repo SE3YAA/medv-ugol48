@@ -8,7 +8,8 @@
 <meta name="theme-color" content="#0e0f11">
 <meta property="og:title" content="Медвежий угол — спрячься от городской суеты">
 <meta property="og:image" content="hero-aframe.jpg">
-<script>try{if(localStorage.getItem('mu-theme')==='light')document.documentElement.setAttribute('data-mu-theme','light')}catch(e){}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('fx')}catch(e){}
+try{if(localStorage.getItem('mu-theme')==='light')document.documentElement.setAttribute('data-mu-theme','light')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400&family=Playfair+Display:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap">
@@ -101,6 +102,22 @@ p{margin:0;text-wrap:pretty}
 :root[data-mu-theme="light"] .theme .moon{display:block}
 :root[data-mu-theme="light"] .theme .sun{display:none}
 
+/* ── кино при прокрутке (включается скриптом, без него всё просто видно) ── */
+html.fx .rv{opacity:0;translate:0 44px;transition:opacity 1s cubic-bezier(.16,1,.3,1) var(--d,0s),translate 1.2s cubic-bezier(.16,1,.3,1) var(--d,0s)}
+html.fx .rv.vis{opacity:1;translate:0 0}
+html.fx .sh .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+html.fx .sh .w>span{display:inline-block;translate:0 110%;transition:translate 1.15s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0)*70ms)}
+html.fx .sh.vis .w>span{translate:0 0}
+html.fx .band{height:240vh;margin:0}
+html.fx .band-stick{position:sticky;top:0;height:100vh;border-radius:0;overflow:hidden}
+html.fx .band-media{clip-path:inset(var(--bi,18%) var(--bx,22%) round var(--br,30px))}
+html.fx .band-media img{scale:var(--bs,1.15)}
+html.fx .band .in{opacity:var(--bt,0);translate:0 var(--by,40px)}
+html.fx .frame>.bgimg{translate:0 var(--hy,0px)}
+html.fx .frame .center{opacity:var(--ho,1);translate:0 var(--hc,0px)}
+html.fx .px{scale:1.14;translate:0 var(--py,0px)}
+html.fx .final>img{scale:var(--fs,1.2)}
+
 /* окно брони */
 .modal{position:fixed;inset:0;z-index:70;background:rgba(8,8,9,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;animation:fadein .3s ease both}
 .modal[hidden]{display:none}
@@ -161,9 +178,11 @@ p{margin:0;text-wrap:pretty}
 .round svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
 /* полоса-цитата */
-.band{position:relative;min-height:min(86vh,820px);display:flex;align-items:flex-end;isolation:isolate;overflow:hidden;margin:0 12px;border-radius:30px}
-.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 35%,rgba(10,11,12,.88) 100%)}
+.band{position:relative;margin:0 12px}
+.band-stick{position:relative;height:min(86vh,820px);display:flex;align-items:flex-end;isolation:isolate;overflow:hidden;border-radius:30px}
+.band-media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.band-media img{width:100%;height:100%;object-fit:cover;display:block}
+.band-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(10,11,12,.88) 100%)}
 .band .in{padding:0 40px 52px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;width:100%}
 .band h2{font-size:clamp(34px,5vw,76px);max-width:14ch}
 
@@ -277,7 +296,8 @@ p{margin:0;text-wrap:pretty}
   .perk{padding:20px 0!important;border-left:0!important;border-top:1px solid var(--line)}
   .perk:first-child{border-top:0}
   .cards{grid-template-columns:minmax(0,1fr)}
-  .band{margin:0 8px;border-radius:24px}
+  .band{margin:0 8px}
+  .band-stick{border-radius:24px}
   .band .in{padding:0 22px 30px}
   .exp>*{grid-column:span 12!important}
   .ex{min-height:400px}
@@ -372,9 +392,11 @@ p{margin:0;text-wrap:pretty}
 </section>
 
 <!-- полоса-цитата (после домов) -->
-<section class="band">
-  <img src="hammock-read.jpg" alt="Гостья читает книгу в гамаке под гирляндами" loading="lazy">
+<section class="band" id="band">
+  <div class="band-stick">
+  <div class="band-media"><img src="hammock-read.jpg" alt="Гостья читает книгу в гамаке под гирляндами" loading="lazy"></div>
   <div class="in"><h2>Книга, гамак и никуда не нужно</h2><p class="muted" style="max-width:30ch;color:#d6d1c8">Так выглядит обычный вечер в Медвежьем углу.</p></div>
+  </div>
 </section>
 
 <!-- о месте + цифры -->
@@ -565,6 +587,47 @@ p{margin:0;text-wrap:pretty}
   var x0=null;$('lb').addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
   $('lb').addEventListener('touchend',function(e){if(x0==null)return;var dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>50)step(dx<0?1:-1)});
   gal();
+
+  // ── кино при прокрутке ──
+  if(!root.classList.contains('fx'))return;
+  var vh=innerHeight;addEventListener('resize',function(){vh=innerHeight});
+  var clamp=function(v){return v<0?0:v>1?1:v},ease=function(t){return 1-Math.pow(1-t,3)};
+  // заголовки по словам
+  document.querySelectorAll('.sec h2, .band h2, .final h2').forEach(function(h){
+    if(h.children.length)return;var i=0;
+    h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="w"><span style="--i:'+(i++)+'">'+w+'</span></span>'}).join(' ');
+    h.classList.add('sh');
+  });
+  // появление волной
+  [['.perk',0.08],['.card',0.1],['.ex',0.08],['.st',0.08],['.num',0.08],['.sv',0.06],['.split .ph',0],['.head p',0.1]].forEach(function(g){
+    document.querySelectorAll(g[0]).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(i%4)*g[1]+'s')});
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.12});
+  document.querySelectorAll('.rv,.sh').forEach(function(el){io.observe(el)});
+  // параллакс внутри фото
+  document.querySelectorAll('.ex img,.split .ph img').forEach(function(im){im.classList.add('px')});
+  var pxs=[].slice.call(document.querySelectorAll('.px'));
+  var frame=document.querySelector('.frame'),band=$('band'),bmedia=band.querySelector('.band-stick'),fin=document.querySelector('.final');
+  var mob=function(){return innerWidth<681};
+  var ticking=false;
+  function frameFx(){
+    ticking=false;var y=scrollY;
+    // первый экран
+    var fh=frame.offsetHeight;if(y<fh){var k=y/fh;frame.style.setProperty('--hy',(y*0.32).toFixed(1)+'px');frame.style.setProperty('--ho',Math.max(0,1-k*1.8).toFixed(3));frame.style.setProperty('--hc',(-y*0.18).toFixed(1)+'px')}
+    // сцена с гамаком
+    var r=band.getBoundingClientRect(),p=clamp(-r.top/(r.height-vh)),e=ease(clamp(p/0.62));
+    var bi=(mob()?20:18)*(1-e),bx=(mob()?7:22)*(1-e);
+    bmedia.style.setProperty('--bi',bi.toFixed(2)+'%');bmedia.style.setProperty('--bx',bx.toFixed(2)+'%');
+    bmedia.style.setProperty('--br',(30*(1-e)).toFixed(1)+'px');bmedia.style.setProperty('--bs',(1.15-0.15*e).toFixed(4));
+    var t=ease(clamp((p-0.55)/0.3));bmedia.style.setProperty('--bt',t.toFixed(3));bmedia.style.setProperty('--by',(40*(1-t)).toFixed(1)+'px');
+    // параллакс
+    pxs.forEach(function(im){var b=im.parentNode.getBoundingClientRect();if(b.bottom<-50||b.top>vh+50)return;
+      var c=(b.top+b.height/2-vh/2)/vh;im.style.setProperty('--py',(-c*b.height*0.1).toFixed(1)+'px')});
+    // финал
+    var fr=fin.getBoundingClientRect();if(fr.top<vh&&fr.bottom>0){var q=clamp(1-fr.top/vh);fin.style.setProperty('--fs',(1.2-0.2*ease(q)).toFixed(4))}
+  }
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(frameFx)}}
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);frameFx();
 })();
 </script>
 </body>
