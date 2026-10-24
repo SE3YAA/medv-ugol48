@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0e0f11">
 <meta property="og:title" content="Медвежий угол — спрячься от городской суеты">
 <meta property="og:image" content="hero-aframe.jpg">
+<script>try{if(localStorage.getItem('mu-theme')==='light')document.documentElement.setAttribute('data-mu-theme','light')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400&family=Playfair+Display:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap">
@@ -17,14 +18,21 @@
    заголовки с засечками в обычном регистре, золотистый акцент. */
 :root{
   --bg:#0e0f11; --panel:#16181b; --panel2:#1d2024; --ink:#f2eee7; --muted:#a8a298; --line:rgba(242,238,231,.12);
+  --line2:rgba(242,238,231,.3); --soft:#d6d1c8; --gold-text:#d2ad73; --fill:rgba(242,238,231,.07); --veil:rgba(10,11,12,.97); --photo-ink:#f4f0e8;
   --gold:#d2ad73; --gold-ink:#16130e;
   --serif:"Playfair Display",Georgia,"Times New Roman",serif;
   --wide:"Unbounded","Arial",sans-serif;
   --body:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   color-scheme:dark;
 }
+/* светлая тема: включается кнопкой с солнцем, выбор запоминается */
+:root[data-mu-theme="light"]{
+  --bg:#f6f5f1; --panel:#ffffff; --panel2:#ebe8e2; --ink:#16171a; --muted:#5b5852; --line:rgba(22,23,26,.12);
+  --line2:rgba(22,23,26,.32); --soft:#3f3d39; --gold-text:#875a1d; --fill:rgba(22,23,26,.06); --veil:rgba(246,245,241,.98);
+  color-scheme:light;
+}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scrollbar-color:#3a3d42 var(--bg)}
+html{scroll-behavior:smooth;scrollbar-color:var(--line2) var(--bg)}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--body);-webkit-font-smoothing:antialiased;caret-color:var(--gold);accent-color:var(--gold)}
 ::selection{background:#5a4626;color:#fff}
 img{max-width:100%;display:block}
@@ -43,8 +51,8 @@ p{margin:0;text-wrap:pretty}
 .btn:hover{background:#e0bd86;transform:translateY(-1px)}
 .btn .ar{width:30px;height:30px;border-radius:50%;background:var(--gold-ink);color:var(--gold);display:inline-flex;align-items:center;justify-content:center}
 .ar svg,.ico svg{width:15px;height:15px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(242,238,231,.35);padding:12px 24px}
-.btn.line:hover{box-shadow:inset 0 0 0 1px var(--gold);color:var(--gold)}
+.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2);padding:12px 24px}
+.btn.line:hover{box-shadow:inset 0 0 0 1px var(--gold-text);color:var(--gold-text)}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
 .ph{position:relative;overflow:hidden;background:var(--panel2)}
 .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
@@ -78,6 +86,21 @@ p{margin:0;text-wrap:pretty}
 .rule{animation-delay:.15s}.center h1{animation-delay:.25s}.center .sub{animation-delay:.35s}.center .btn{animation-delay:.45s}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
+/* текст на фотографиях всегда светлый в обеих темах */
+.frame,.band,.ex,.final,.mph,.card .tag,.card .cnt{color:var(--photo-ink)}
+.final .btn.line{color:var(--photo-ink);box-shadow:inset 0 0 0 1px rgba(244,240,232,.4)}
+.final .muted,.final .fgrid .k,.final .legal{color:#cbc5bb}
+.final .fgrid{border-top-color:rgba(244,240,232,.18)}
+.ex.soon-card{color:var(--photo-ink)}
+
+/* кнопка темы */
+.theme{width:46px;height:46px;border-radius:50%;border:1px solid rgba(242,238,231,.25);background:rgba(14,15,17,.42);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.theme:hover{border-color:var(--gold)}
+.theme svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.theme .moon{display:none}
+:root[data-mu-theme="light"] .theme .moon{display:block}
+:root[data-mu-theme="light"] .theme .sun{display:none}
+
 /* окно брони */
 .modal{position:fixed;inset:0;z-index:70;background:rgba(8,8,9,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;animation:fadein .3s ease both}
 .modal[hidden]{display:none}
@@ -92,20 +115,20 @@ p{margin:0;text-wrap:pretty}
 .mph .mt span{color:#ddd8cf;font-size:14px}
 .mbody{padding:30px 30px 26px;display:flex;flex-direction:column;gap:6px}
 .mbody .mh{font:500 24px var(--serif);margin-bottom:12px}
-.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(242,238,231,.07);border-radius:999px;padding:4px;margin-bottom:10px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--fill);border-radius:999px;padding:4px;margin-bottom:10px}
 .seg button{border:0;border-radius:999px;min-height:42px;background:transparent;color:var(--muted);font:700 14px var(--body);cursor:pointer}
 .seg button.on{background:var(--ink);color:var(--bg)}
 .mrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 .mrow>span{color:var(--muted);font-size:15px}
 .mrow b{font-weight:700}
 .step{display:flex;align-items:center;gap:14px}
-.step button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(242,238,231,.25);background:transparent;color:var(--ink);font:500 19px var(--body);cursor:pointer}
-.step button:hover{border-color:var(--gold);color:var(--gold)}
+.step button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line2);background:transparent;color:var(--ink);font:500 19px var(--body);cursor:pointer}
+.step button:hover{border-color:var(--gold-text);color:var(--gold-text)}
 .step b{min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
-.date{background:transparent;border:1px solid rgba(242,238,231,.22);border-radius:10px;color:var(--ink);font:600 15px var(--body);color-scheme:dark;padding:8px 10px;min-height:42px}
+.date{background:transparent;border:1px solid var(--line2);border-radius:10px;color:var(--ink);font:600 15px var(--body);padding:8px 10px;min-height:42px}
 .mtotal{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:16px}
 .mtotal span{color:var(--muted)}
-.mtotal b{font:500 40px/1 var(--serif);color:var(--gold);font-variant-numeric:tabular-nums}
+.mtotal b{font:500 40px/1 var(--serif);color:var(--gold-text);font-variant-numeric:tabular-nums}
 .mbody .btn{margin-top:16px;width:100%;justify-content:space-between}
 .mnote{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
 .mx{position:absolute;top:14px;right:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(14,15,17,.6);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -115,7 +138,7 @@ p{margin:0;text-wrap:pretty}
 .perks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .perk{display:flex;gap:16px;align-items:flex-start;padding:30px 24px 30px 0}
 .perk+.perk{padding-left:24px;border-left:1px solid var(--line)}
-.ico{width:44px;height:44px;flex:none;border-radius:50%;border:1px solid rgba(210,173,115,.45);color:var(--gold);display:flex;align-items:center;justify-content:center}
+.ico{width:44px;height:44px;flex:none;border-radius:50%;border:1px solid var(--gold-text);color:var(--gold-text);display:flex;align-items:center;justify-content:center}
 .ico svg{width:20px;height:20px;stroke-width:1.6}
 .perk b{display:block;font-weight:700;margin-bottom:2px}
 .perk span{font-size:14px;color:var(--muted)}
@@ -128,7 +151,7 @@ p{margin:0;text-wrap:pretty}
 .card .cnt{position:absolute;right:14px;bottom:14px;padding:6px 12px;border-radius:999px;background:rgba(14,15,17,.6);backdrop-filter:blur(10px);font-size:13px;font-weight:600}
 .card .body{padding:24px;display:flex;flex-direction:column;gap:14px;flex:1}
 .specs{display:flex;flex-wrap:wrap;gap:8px}
-.specs span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:#d6d1c8}
+.specs span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--soft)}
 .card p{color:var(--muted);font-size:15px}
 .cfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
 .cfoot b{font:500 28px var(--serif);font-variant-numeric:tabular-nums}
@@ -150,7 +173,7 @@ p{margin:0;text-wrap:pretty}
 .split .txt{display:flex;flex-direction:column;gap:22px}
 .nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:10px}
 .num{border-top:1px solid var(--line);padding-top:16px}
-.num b{display:block;font:500 clamp(36px,4vw,52px)/1 var(--serif);color:var(--gold)}
+.num b{display:block;font:500 clamp(36px,4vw,52px)/1 var(--serif);color:var(--gold-text)}
 .num span{font-size:14px;color:var(--muted)}
 
 /* впечатления */
@@ -180,7 +203,7 @@ p{margin:0;text-wrap:pretty}
 /* этапы */
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .st{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px}
-.st i{font:500 40px/1 var(--serif);font-style:normal;color:var(--gold)}
+.st i{font:500 40px/1 var(--serif);font-style:normal;color:var(--gold-text)}
 .st b{font-size:18px}
 .st span{color:var(--muted);font-size:15px}
 
@@ -188,7 +211,7 @@ p{margin:0;text-wrap:pretty}
 .faq-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:56px}
 .qa{border-top:1px solid var(--line)}
 .q{width:100%;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:600 18px var(--body);text-align:left;padding:24px 0;display:flex;justify-content:space-between;gap:16px;cursor:pointer;min-height:44px}
-.q i{font-style:normal;color:var(--gold);font-size:24px;line-height:1;transition:transform .3s}
+.q i{font-style:normal;color:var(--gold-text);font-size:24px;line-height:1;transition:transform .3s}
 .q[aria-expanded="true"] i{transform:rotate(45deg)}
 .a{color:var(--muted);padding:0 0 24px;border-bottom:1px solid var(--line);max-width:62ch}
 .a[hidden]{display:none}
@@ -215,10 +238,10 @@ p{margin:0;text-wrap:pretty}
 .lb .lbcap{position:absolute;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom,0px));text-align:center;color:#ddd;font-size:14px}
 
 /* меню на телефоне */
-.drawer{position:fixed;inset:0;z-index:55;background:rgba(10,11,12,.97);display:flex;flex-direction:column;padding:90px 28px 40px}
+.drawer{position:fixed;inset:0;z-index:55;background:var(--veil);color:var(--ink);display:flex;flex-direction:column;padding:90px 28px 40px}
 .drawer[hidden]{display:none}
 .drawer a{font:500 30px var(--serif);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--line)}
-.drawer .x{position:absolute;top:calc(22px + env(safe-area-inset-top,0px));right:24px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.drawer .x{position:absolute;top:calc(22px + env(safe-area-inset-top,0px));right:24px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line2);background:none;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center}
 .drawer .x svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
 
 /* ноутбук */
@@ -281,6 +304,7 @@ p{margin:0;text-wrap:pretty}
       <nav class="menu" aria-label="Разделы"><a href="#houses">Дома</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a></nav>
       <div class="nav-r">
         <a class="tel" href="tel:+79056880611">8 905 688-06-11</a>
+        <button class="theme" id="themeBtn" aria-label="Переключить тему"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
         <button class="btn" data-book="0">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button>
         <button class="burger" id="burger" aria-label="Открыть меню"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       </div>
@@ -456,7 +480,7 @@ p{margin:0;text-wrap:pretty}
 <div class="drawer" id="drawer" hidden role="dialog" aria-label="Меню">
   <button class="x" id="drawerX" aria-label="Закрыть меню"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <a href="#houses">Дома</a><a href="#houses" data-book="0">Бронирование</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
-  <a href="tel:+79056880611" style="color:var(--gold)">8 905 688-06-11</a>
+  <a href="tel:+79056880611" style="color:var(--gold-text)">8 905 688-06-11</a>
 </div>
 
 <div class="lb" id="lb" hidden role="dialog" aria-label="Просмотр фото">
@@ -470,6 +494,15 @@ p{margin:0;text-wrap:pretty}
 (function(){
   var $=function(id){return document.getElementById(id)};
   var IM=window.IM||function(n){return n+'.jpg'};
+
+  // тема
+  var root=document.documentElement,meta=document.querySelector('meta[name="theme-color"]');
+  function setTheme(t){if(t==='light')root.setAttribute('data-mu-theme','light');else root.removeAttribute('data-mu-theme');
+    meta.setAttribute('content',t==='light'?'#f6f5f1':'#0e0f11');
+    $('themeBtn').setAttribute('aria-label',t==='light'?'Включить тёмную тему':'Включить светлую тему');
+    try{localStorage.setItem('mu-theme',t)}catch(e){}}
+  setTheme(root.getAttribute('data-mu-theme')==='light'?'light':'dark');
+  $('themeBtn').onclick=function(){setTheme(root.getAttribute('data-mu-theme')==='light'?'dark':'light')};
 
   // меню на телефоне
   $('burger').onclick=function(){$('drawer').hidden=false;document.body.style.overflow='hidden'};
