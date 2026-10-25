@@ -245,6 +245,9 @@ html.fx .final>img{scale:var(--fs,1.2)}
 .fgrid .k{font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600}
 .fgrid a,.fgrid div{font-size:15px;text-decoration:none}
 .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted)}
+.legal .docs{display:flex;flex-wrap:wrap;gap:6px 18px}
+.legal .docs a{color:inherit;text-decoration:underline;text-decoration-color:rgba(244,240,232,.35)}
+.legal .docs a:hover{color:var(--photo-ink)}
 
 /* просмотр фото */
 .lb{position:fixed;inset:0;z-index:60;background:rgba(8,8,9,.95);display:flex;align-items:center;justify-content:center;padding:64px}
@@ -580,7 +583,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
       <div><div class="k">Почта</div><a href="mailto:ugol.medv@yandex.ru">ugol.medv@yandex.ru</a></div>
       <div><div class="k">Заезд и выезд</div><div>с 15:00 до 16:00, до 12:00</div></div>
     </div>
-    <div class="legal"><span>© 2026 Медвежий угол · ИП Лопатин А. Ю. · ИНН 482600867224</span><span>Глэмпинг в сосновом лесу, Липецкая область</span></div>
+    <div class="legal"><span>© 2026 Медвежий угол · ИП Лопатин А. Ю. · ИНН 482600867224</span><span class="docs"><a href="oferta.html">Договор-оферта</a><a href="oplata.html">Оплата и возврат</a><a href="privacy.html">Конфиденциальность</a></span></div>
   </div>
 </section>
 
@@ -597,7 +600,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
       <div class="mrow"><span id="gl">Гостей, до 4</span><div class="step"><button data-g="-1" aria-label="Меньше гостей">−</button><b id="guests">2</b><button data-g="1" aria-label="Больше гостей">+</button></div></div>
       <div class="mtotal"><span>Итого</span><b id="total">16 000 ₽</b></div>
       <a class="btn" href="tel:+79056880611">Позвонить и забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
-      <p class="mnote">8 905 688-06-11 или 8 960 144-77-55. Подтвердим свободные даты по телефону.</p>
+      <p class="mnote">8 905 688-06-11 или 8 960 144-77-55. Подтвердим даты по телефону, для брони — предоплата 30%. Бесплатная отмена за 3 дня до заезда.</p>
     </div>
   </div>
 </div>
@@ -702,7 +705,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
   }
 
   // вопросы
-  var FAQ=[['Можно с питомцами?','К сожалению, нет: с животными на базу нельзя. Штраф за нарушение 10 000 ₽.'],['Есть мангал и шампуры?','Да, всё есть. Приезжайте с мясом, остальное найдётся.'],['Можно устроить праздник?','Да, поможем с декором для дня рождения, предложения или годовщины.'],['До скольки можно шуметь?','Громкая музыка на улице до 22:00, дальше в лесу тишина. Штраф за нарушение 10 000 ₽.'],['Во сколько заезд и выезд?','Заезд с 15:00 до 16:00, выезд до 12:00. Ранний заезд или поздний выезд +2 000 ₽.'],['Можно поставить палатку или позвать друзей?','На территории только гости, указанные в брони. Палатки и дополнительные спальные места запрещены.']];
+  var FAQ=[['Можно с питомцами?','К сожалению, нет: с животными на базу нельзя. Штраф за нарушение 10 000 ₽.'],['Есть мангал и шампуры?','Да, всё есть. Приезжайте с мясом, остальное найдётся.'],['Можно устроить праздник?','Да, поможем с декором для дня рождения, предложения или годовщины.'],['До скольки можно шуметь?','Громкая музыка на улице до 22:00, дальше в лесу тишина. Штраф за нарушение 10 000 ₽.'],['Во сколько заезд и выезд?','Заезд с 15:00 до 16:00, выезд до 12:00. Ранний заезд или поздний выезд +2 000 ₽.'],['Нужна ли предоплата и можно ли отменить бронь?','Для подтверждения брони вносится предоплата 30%, остаток — при заезде. При отмене не позднее чем за 3 дня до заезда предоплата возвращается полностью, при более поздней отмене удерживаем не больше стоимости одних суток. Подробно — на странице «Оплата и возврат» внизу сайта.'],['Можно поставить палатку или позвать друзей?','На территории только гости, указанные в брони. Палатки и дополнительные спальные места запрещены.']];
   $('qa').innerHTML=FAQ.map(function(f,i){return '<button class="q" aria-expanded="'+(i===0)+'" data-q="'+i+'">'+f[0]+'<i>+</i></button><p class="a"'+(i===0?'':' hidden')+'>'+f[1]+'</p>'}).join('');
   $('qa').onclick=function(e){var b=e.target.closest('.q');if(!b)return;var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!o);b.nextElementSibling.hidden=o};
 
