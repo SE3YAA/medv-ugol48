@@ -180,7 +180,7 @@ html.fx .final>img{scale:var(--fs,1.2)}
 .specs span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--soft)}
 .card p{color:var(--muted);font-size:15px}
 .cfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
-.cfoot b{font:500 28px var(--serif);font-variant-numeric:tabular-nums}
+.cfoot b{font:500 28px var(--serif);font-variant-numeric:tabular-nums;white-space:nowrap}
 .cfoot small{color:var(--muted);font-size:13px;display:block}
 .round{width:50px;height:50px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:inline-flex;align-items:center;justify-content:center;border:0;cursor:pointer;flex:none;text-decoration:none;transition:transform .25s}
 .round:hover{transform:rotate(-45deg)}
@@ -368,6 +368,8 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
   .perk{padding:20px 0!important;border-left:0!important;border-top:1px solid var(--line)}
   .perk:first-child{border-top:0}
   .cards,.cards.duo{grid-template-columns:minmax(0,1fr)}
+  .cfoot{flex-direction:column;align-items:stretch;gap:16px}
+  .cfoot .btn{justify-content:center}
   .extra{flex-direction:column;align-items:flex-start}
   .band{margin:0 8px}
   .band-stick{border-radius:24px}
@@ -464,7 +466,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
         <button class="ph zoomable" data-set="b" aria-label="Фото Barnhouse"><img src="hero-barn.jpg" alt="Barnhouse вечером с гирляндами" loading="lazy"><span class="tag">Barnhouse</span><span class="cnt">6 фото</span></button>
         <div class="body">
           <h3>Barnhouse</h3>
-          <div class="specs"><span>до 8 гостей</span><span>3 спальни</span><span>стол на 8 гостей</span></div>
+          <div class="specs"><span>до 8 гостей</span><span>3 спальни</span><span>стол на 6–8 гостей</span></div>
           <p>Просторный дом для большой компании: три спальни, кухня-гостиная с большим столом и терраса с гирляндами для долгих вечеров.</p>
           <div class="cfoot"><div><small>от</small><b>10 000 ₽</b><small>за ночь на двоих,<br>+1&nbsp;000&nbsp;₽ за гостя</small></div><button class="btn" data-book="1">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
         </div>
@@ -527,7 +529,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
     <div class="ph zoomable"><img src="dinner-view.jpg" alt="Ужин при свечах с видом на сосновый лес" loading="lazy"></div>
     <div class="txt">
       <h2>Место, куда хочется вернуться</h2>
-      <p class="lead">«Медвежий угол» расположен в зоне рекреации Ленинского лесхоза в Грязинском районе. Вокруг сосны, рядом водоём и пляж. Дома новые и чистые, мангал и шампуры уже ждут.</p>
+      <p class="lead">«Медвежий угол» расположен в зоне рекреации в Грязинском районе. Вокруг сосны, рядом водоём и пляж. Дома новые и чистые. Мангал и шампура уже ждут.</p>
       <div><a class="btn line" href="#gallery">Смотреть галерею</a></div>
     </div>
   </div>
