@@ -163,6 +163,14 @@ html.fx .final>img{scale:var(--fs,1.2)}
 
 /* карточки домов */
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.cards.duo{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cards.duo .card .ph{aspect-ratio:16/10.5}
+.card .ph.art{position:relative;cursor:default;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 90% at 50% 100%,rgba(210,173,115,.16),transparent 60%),linear-gradient(165deg,#23262b,#121315)}
+.card .ph.art svg{width:46%;max-width:220px;fill:none;stroke:#d2ad73;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.card .ph.art .tag{color:#f4f0e8}
+.extra{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;border:1px solid var(--line);border-radius:24px;background:var(--panel)}
+.extra b{display:block;font-weight:700;margin-bottom:2px}
+.extra span{font-size:15px;color:var(--muted)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
 .card .ph{aspect-ratio:4/3.3;cursor:zoom-in;border:0;padding:0;width:100%}
 .card .tag{position:absolute;left:14px;top:14px;padding:6px 12px;border-radius:999px;background:rgba(14,15,17,.6);backdrop-filter:blur(10px);font-size:13px;font-weight:700}
@@ -322,6 +330,12 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
 .asteps b{font-weight:700}
 
 /* ноутбук */
+@media (max-width:1440px){
+  .menu a{padding:9px 13px}
+}
+@media (max-width:1360px){
+  .nav-r .tel{display:none}
+}
 @media (max-width:1240px){
   .menu{display:none}
 }
@@ -353,7 +367,8 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
   .perks{grid-template-columns:minmax(0,1fr)}
   .perk{padding:20px 0!important;border-left:0!important;border-top:1px solid var(--line)}
   .perk:first-child{border-top:0}
-  .cards{grid-template-columns:minmax(0,1fr)}
+  .cards,.cards.duo{grid-template-columns:minmax(0,1fr)}
+  .extra{flex-direction:column;align-items:flex-start}
   .band{margin:0 8px}
   .band-stick{border-radius:24px}
   .band .in{padding:0 22px 30px}
@@ -397,7 +412,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
     <img class="bgimg" src="hero-aframe.jpg" alt="A-frame с золотой подсветкой среди сосен">
     <div class="nav">
       <a class="logo" href="#top">Глэмпинг в лесу</a>
-      <nav class="menu" aria-label="Разделы"><a href="#houses">Дома</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#app">Приложение</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a></nav>
+      <nav class="menu" aria-label="Разделы"><a href="#houses">Дома</a><a href="#services">Услуги</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#app">Приложение</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a></nav>
       <div class="nav-r">
         <a class="tel" href="tel:+79056880611">8 905 688-06-11</a>
         <button class="theme" id="themeBtn" aria-label="Переключить тему"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
@@ -435,7 +450,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
       <h2>Наши дома</h2>
       <p class="lead">Нажмите на фото, чтобы посмотреть интерьер.</p>
     </div>
-    <div class="cards">
+    <div class="cards duo">
       <article class="card">
         <button class="ph zoomable" data-set="a" aria-label="Фото A-frame"><img src="aframe-hammock.jpg" alt="A-frame среди сосен, рядом гамак" loading="lazy"><span class="tag">A-frame</span><span class="cnt">7 фото</span></button>
         <div class="body">
@@ -454,16 +469,47 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
           <div class="cfoot"><div><small>от</small><b>10 000 ₽</b><small>за ночь на двоих,<br>+1&nbsp;000&nbsp;₽ за гостя</small></div><button class="btn" data-book="1">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- УСЛУГИ (ниже домов) -->
+<section class="sec" id="services" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <h2>Услуги</h2>
+      <p class="lead">Добавьте к отдыху в доме. Забронировать можно по телефону.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="ph art"><svg viewBox="0 0 160 110" aria-hidden="true"><circle cx="38" cy="80" r="20"/><circle cx="38" cy="80" r="7"/><circle cx="124" cy="80" r="20"/><circle cx="124" cy="80" r="7"/><path d="M18 62l22-14h24l10-10h22l8 10h22l14 12"/><path d="M58 80h46M40 48l-6-10h-12M96 38l10-18h14M100 20h18"/><path d="M64 48l8 14h24"/></svg><span class="tag">Квадроциклы</span></div>
+        <div class="body">
+          <h3>Прокат квадроциклов</h3>
+          <div class="specs"><span>с инструктором</span><span>по лесным тропам</span><span>круглый год</span></div>
+          <p>Прогулки по сосновому бору: только лес, никаких дорог. Адреналин днём, баня и тишина вечером.</p>
+          <div class="cfoot"><div><b>3 000 ₽</b><small>за час с человека</small></div><a class="btn" href="tel:+79056880611">Позвонить <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a></div>
+        </div>
+      </article>
       <article class="card">
         <button class="ph zoomable" data-set="c" aria-label="Фото беседок"><img src="gazebo-flowers.jpg" alt="Беседка с гирляндами и цветами" loading="lazy"><span class="tag">Беседки</span><span class="cnt">3 фото</span></button>
         <div class="body">
-          <h3>Беседки и баня</h3>
+          <h3>Беседки</h3>
           <div class="specs"><span>гриль</span><span>подогрев</span><span>10:00–22:00</span></div>
-          <p>Беседки с грилем работают круглый год. Баня до 6 гостей в двух шагах от домов, от 3 часов, от 1 000 ₽ в час.</p>
-          <div class="cfoot"><div><small>беседка от</small><b>800 ₽/час</b></div><a class="btn" href="tel:+79056880611">Позвонить <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a></div>
+          <p>Беседки с грилем работают круглый год. Можно арендовать на несколько часов и без проживания.</p>
+          <div class="cfoot"><div><small>от</small><b>800 ₽</b><small>за час</small></div><a class="btn" href="tel:+79056880611">Позвонить <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ph art"><svg viewBox="0 0 160 110" aria-hidden="true"><path d="M30 100V58l50-34 50 34v42z"/><path d="M30 70h100M30 82h100M30 94h100"/><path d="M68 100V76h24v24"/><path d="M60 20c-6-6 6-10 0-16M80 14c-6-6 6-10 0-16M100 20c-6-6 6-10 0-16"/></svg><span class="tag">Баня</span></div>
+        <div class="body">
+          <h3>Баня</h3>
+          <div class="specs"><span>до 6 гостей</span><span>от 3 часов</span><span>рядом с домами</span></div>
+          <p>Баня для компании в двух шагах от домов. После парилки можно выйти прямо к соснам.</p>
+          <div class="cfoot"><div><small>от</small><b>1 000 ₽</b><small>за час</small></div><a class="btn" href="tel:+79056880611">Позвонить <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a></div>
         </div>
       </article>
     </div>
+    <div class="extra"><div><b>Праздник под ключ</b><span>Свечи, цветы и сервировка к свиданию или празднику.</span></div><a class="btn line" href="tel:+79056880611">Обсудить</a></div>
   </div>
 </section>
 
@@ -495,13 +541,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
       <div class="ex" style="grid-column:span 7"><img src="hammock.jpg" alt="Гамак между соснами" loading="lazy"><div class="in"><h3>Единение с лесом</h3><p>Сосновый бор, гамак между стволами, водоём рядом. Утром будят птицы, а не будильник.</p></div></div>
       <div class="ex" style="grid-column:span 5"><img src="match.jpg" alt="Зажигают свечи на столе с пионами" loading="lazy"><div class="in"><h3>Тёплый вечер</h3><p>Свечи, пионы, ужин в кругу своих. Поможем с декором к свиданию или празднику.</p></div></div>
       <div class="ex" style="grid-column:span 5"><img src="coffee.jpg" alt="Кофемашина наливает кофе" loading="lazy"><div class="in"><h3>Всё уже готово</h3><p>Свежее бельё, кофе в кофемашине, мангал и шампуры. Вы приезжаете отдыхать.</p></div></div>
-      <div class="ex soon-card" style="grid-column:span 7"><div class="in"><span class="chip">скоро</span><h3>Квадроциклы по лесным тропам</h3><p>Адреналин днём, баня и тишина вечером. Маршруты по сосновому бору с инструктором.</p></div></div>
-    </div>
-    <div class="svc">
-      <div class="sv"><b>Баня</b><em>от 1 000 ₽ / час</em><span>до 6 гостей, от 3 часов</span></div>
-      <div class="sv"><b>Беседки</b><em>от 800 ₽ / час</em><span>с грилем и подогревом</span></div>
-      <div class="sv"><b>Праздник</b><em>декор под ключ</em><span>свечи, цветы, сервировка</span></div>
-      <div class="sv"><b>Квадроциклы</b><em>скоро</em><span>прогулки по лесу</span></div>
+      <div class="ex" style="grid-column:span 7"><img src="toast.jpg" alt="Две подруги на террасе A-frame с бокалами" loading="lazy"><div class="in"><h3>Время для своих</h3><p>Разговоры до заката на террасе. Никто не торопит, а сосны вокруг заглушают городской шум.</p></div></div>
     </div>
   </div>
 </section>
@@ -616,7 +656,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
 
 <div class="drawer" id="drawer" hidden role="dialog" aria-label="Меню">
   <button class="x" id="drawerX" aria-label="Закрыть меню"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <a href="#houses">Дома</a><a href="#houses" data-book="0">Бронирование</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#app">Приложение</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
+  <a href="#houses">Дома</a><a href="#houses" data-book="0">Бронирование</a><a href="#services">Услуги</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#app">Приложение</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
   <a href="tel:+79056880611" style="color:var(--gold-text)">8 905 688-06-11</a>
 </div>
 
@@ -742,7 +782,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
     h.classList.add('sh');
   });
   // появление волной
-  [['.perk',0.08],['.card',0.1],['.ex',0.08],['.st',0.08],['.num',0.08],['.sv',0.06],['.split .ph',0],['.head p',0.1],['.appx-hd .lead',0.1],['.appx-li',0.08],['.appx-cta',0]].forEach(function(g){
+  [['.perk',0.08],['.card',0.1],['.ex',0.08],['.st',0.08],['.num',0.08],['.sv',0.06],['.split .ph',0],['.head p',0.1],['.appx-hd .lead',0.1],['.appx-li',0.08],['.appx-cta',0],['.extra',0]].forEach(function(g){
     document.querySelectorAll(g[0]).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(i%4)*g[1]+'s')});
   });
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.12});
