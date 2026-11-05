@@ -159,6 +159,7 @@ html.fx .final>img{scale:var(--fs,1.2)}
 .ico svg{width:20px;height:20px;stroke-width:1.6}
 .perk b{display:block;font-weight:700;margin-bottom:2px}
 .perk span{font-size:14px;color:var(--muted)}
+.perk div>span{font-size:15px;line-height:1.5;color:var(--gold-text);font-weight:700}
 
 /* карточки домов */
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
@@ -419,10 +420,10 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
 <section style="padding-top:64px">
   <div class="wrap">
     <div class="perks">
-      <div class="perk"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l5 7h-3l4 6h-5v5h-2v-5H6l4-6H7z"/></svg></span><div><b>Сосново-лиственный лес</b><span>Зона рекреации — для отдыха и оздоровления</span></div></div>
-      <div class="perk"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-6 7 6v11M10 21v-6h4v6"/></svg></span><div><b>Новые дома</b><span>Всё для комфортного отдыха</span></div></div>
+      <div class="perk"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l5 7h-3l4 6h-5v5h-2v-5H6l4-6H7z"/></svg></span><div><b>Сосново-лиственный лес</b><span>Зона рекреации, предназначена для отдыха и оздоровления</span></div></div>
+      <div class="perk"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-6 7 6v11M10 21v-6h4v6"/></svg></span><div><b>Новые дома</b><span>Всё для комфортного отдыха на природе</span></div></div>
       <div class="perk"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 3c-1 2 1 3 0 5M12 3c-1 2 1 3 0 5M16 3c-1 2 1 3 0 5M4 12h16v3a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6z"/></svg></span><div><b>Баня рядом</b><span>В двух шагах от домов</span></div></div>
-      <div class="perk"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg></span><div><b>Круглый год</b><span>Тёплые дома и беседки</span></div></div>
+      <div class="perk"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg></span><div><b>Круглый год</b><span>Тёплые дома и беседки, прокат квадроциклов</span></div></div>
     </div>
   </div>
 </section>
@@ -439,7 +440,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
         <button class="ph zoomable" data-set="a" aria-label="Фото A-frame"><img src="aframe-hammock.jpg" alt="A-frame среди сосен, рядом гамак" loading="lazy"><span class="tag">A-frame</span><span class="cnt">7 фото</span></button>
         <div class="body">
           <h3>A-frame</h3>
-          <div class="specs"><span>до 4 гостей</span><span>спальня под крышей</span><span>панорамный вид на лес</span></div>
+          <div class="specs"><span>до 4 гостей</span><span>дом-студия</span><span>панорамный вид на лес</span></div>
           <p>Треугольный дом для пары или небольшой компании: двуспальная кровать наверху, диван-кровать, кухня с кофемашиной, терраса с видом на сосны.</p>
           <div class="cfoot"><div><small>от</small><b>8 000 ₽</b><small>за ночь на двоих,<br>+1&nbsp;000&nbsp;₽ за гостя</small></div><button class="btn" data-book="0">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
         </div>
@@ -448,7 +449,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
         <button class="ph zoomable" data-set="b" aria-label="Фото Barnhouse"><img src="hero-barn.jpg" alt="Barnhouse вечером с гирляндами" loading="lazy"><span class="tag">Barnhouse</span><span class="cnt">6 фото</span></button>
         <div class="body">
           <h3>Barnhouse</h3>
-          <div class="specs"><span>до 8 гостей</span><span>3 спальни</span><span>стол на 6–8 гостей</span></div>
+          <div class="specs"><span>до 8 гостей</span><span>3 спальни</span><span>стол на 8 гостей</span></div>
           <p>Просторный дом для большой компании: три спальни, кухня-гостиная с большим столом и терраса с гирляндами для долгих вечеров.</p>
           <div class="cfoot"><div><small>от</small><b>10 000 ₽</b><small>за ночь на двоих,<br>+1&nbsp;000&nbsp;₽ за гостя</small></div><button class="btn" data-book="1">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
         </div>
@@ -585,7 +586,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
 <div class="modal" id="bm" hidden role="dialog" aria-modal="true" aria-labelledby="bmTitle">
   <div class="sheet">
     <button class="mx" id="bmX" aria-label="Закрыть окно брони"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <div class="mph"><img id="bmImg" src="aframe-hammock.jpg" alt=""><div class="mt"><h3 id="bmTitle">A-frame</h3><span id="bmCap">до 4 гостей, спальня под крышей</span></div></div>
+    <div class="mph"><img id="bmImg" src="aframe-hammock.jpg" alt=""><div class="mt"><h3 id="bmTitle">A-frame</h3><span id="bmCap">до 4 гостей, дом-студия</span></div></div>
     <div class="mbody">
       <div class="mh">Бронирование</div>
       <div class="seg" id="seg"><button class="on" data-h="0">A-frame</button><button data-h="1">Barnhouse</button></div>
@@ -647,7 +648,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
   $('drawer').addEventListener('click',function(e){if(e.target.tagName==='A'&&!e.target.hasAttribute('data-book'))closeDrawer()});
 
   // бронь
-  var H=[{base:8000,max:4,img:'aframe-hammock',t:'A-frame',cap:'до 4 гостей, спальня под крышей'},{base:10000,max:8,img:'hero-barn',t:'Barnhouse',cap:'до 8 гостей, три спальни'}],s={h:0,n:2,g:2};
+  var H=[{base:8000,max:4,img:'aframe-hammock',t:'A-frame',cap:'до 4 гостей, дом-студия'},{base:10000,max:8,img:'hero-barn',t:'Barnhouse',cap:'до 8 гостей, три спальни'}],s={h:0,n:2,g:2};
   var iso=function(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
   var d0=new Date();d0.setDate(d0.getDate()+7);$('din').value=iso(d0);$('din').min=iso(new Date());
   function calc(){
