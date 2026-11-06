@@ -80,7 +80,7 @@ p{margin:0;text-wrap:pretty}
 .center{margin-block:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 24px 230px}
 .word{font:400 clamp(26px,5.6vw,112px)/1 var(--wide);text-transform:uppercase;letter-spacing:-.02em;white-space:nowrap;color:#fbf8f2;text-shadow:0 2px 2px rgba(0,0,0,.25),0 8px 48px rgba(0,0,0,.5)}
 .rule{width:56px;height:1px;background:var(--gold);margin:clamp(20px,2.4vw,30px) 0}
-.center h1{font-size:clamp(24px,2.7vw,40px);font-weight:500;text-shadow:0 4px 30px rgba(0,0,0,.5)}
+.center h1{font-family:var(--body);font-size:clamp(20px,2.2vw,32px);font-weight:600;letter-spacing:-.01em;text-shadow:0 4px 30px rgba(0,0,0,.5)}
 .center .sub{margin-top:14px;max-width:44ch;color:#e4dfd6;font-size:16px;text-shadow:0 2px 16px rgba(0,0,0,.6)}
 .center .btn{margin-top:28px}
 .word,.rule,.center h1,.center .sub,.center .btn{animation:rise 1.3s cubic-bezier(.16,1,.3,1) both}
@@ -171,6 +171,19 @@ html.fx .final>img{scale:var(--fs,1.2)}
 .extra{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;border:1px solid var(--line);border-radius:24px;background:var(--panel)}
 .extra b{display:block;font-weight:700;margin-bottom:2px}
 .extra span{font-size:15px;color:var(--muted)}
+.appx[hidden]{display:none}
+.inc-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--gold-text);font:700 15px var(--body);cursor:pointer}
+.inc-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
+.inc-btn:hover svg{transform:translateX(3px)}
+.inc h4{font:700 12px var(--body);text-transform:uppercase;letter-spacing:.1em;color:var(--gold-text);margin:14px 0 6px}
+.inc h4:first-child{margin-top:0}
+.inc ul{margin:0 0 4px;padding-left:18px;color:var(--soft);font-size:14.5px;line-height:1.55}
+.inc li+li{margin-top:4px}
+#im .mbody .btn{margin-top:16px}
+.party{display:flex;flex-direction:column;gap:12px;padding:26px;border:1px solid var(--gold-text);border-radius:24px;background:linear-gradient(160deg,rgba(210,173,115,.12),rgba(210,173,115,.03))}
+.party h3{font-size:clamp(22px,2vw,28px)}
+.party p{color:var(--soft);font-size:15px}
+.party .btn{align-self:flex-start;margin-top:4px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
 .card .ph{aspect-ratio:4/3.3;cursor:zoom-in;border:0;padding:0;width:100%}
 .card .tag{position:absolute;left:14px;top:14px;padding:6px 12px;border-radius:999px;background:rgba(14,15,17,.6);backdrop-filter:blur(10px);font-size:13px;font-weight:700}
@@ -414,7 +427,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
     <img class="bgimg" src="hero-aframe.jpg" alt="A-frame с золотой подсветкой среди сосен">
     <div class="nav">
       <a class="logo" href="#top">Глэмпинг в лесу</a>
-      <nav class="menu" aria-label="Разделы"><a href="#houses">Дома</a><a href="#services">Услуги</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#app">Приложение</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a></nav>
+      <nav class="menu" aria-label="Разделы"><a href="#houses">Дома</a><a href="#services">Услуги</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a></nav>
       <div class="nav-r">
         <a class="tel" href="tel:+79056880611">8 905 688-06-11</a>
         <button class="theme" id="themeBtn" aria-label="Переключить тему"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
@@ -426,7 +439,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
       <p class="word">Медвежий угол</p>
       <span class="rule" aria-hidden="true"></span>
       <h1>Спрячься от городской суеты</h1>
-      <p class="sub">Дома среди сосен в Липецкой области, баня в двух шагах и тишина, ради которой сюда возвращаются.</p>
+      <p class="sub">Уютные дома в лесу Липецкой области, баня в двух шагах и тишина, ради которой сюда возвращаются.</p>
       <a class="btn" href="#houses">Выбрать дом <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
     </div>
   </div>
@@ -454,21 +467,22 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
     </div>
     <div class="cards duo">
       <article class="card">
-        <button class="ph zoomable" data-set="a" aria-label="Фото A-frame"><img src="aframe-hammock.jpg" alt="A-frame среди сосен, рядом гамак" loading="lazy"><span class="tag">A-frame</span><span class="cnt">7 фото</span></button>
+        <button class="ph zoomable" data-set="a" aria-label="Фото A-frame"><img src="aframe-hammock.jpg" alt="A-frame среди сосен, рядом гамак" loading="lazy"><span class="tag">A-frame</span><span class="cnt">6 фото</span></button>
         <div class="body">
           <h3>A-frame</h3>
           <div class="specs"><span>до 4 гостей</span><span>дом-студия</span><span>панорамный вид на лес</span></div>
-          <p>Треугольный дом для пары или небольшой компании: двуспальная кровать наверху, диван-кровать, кухня с кофемашиной, терраса с видом на сосны.</p>
-          <div class="cfoot"><div><small>от</small><b>8 000 ₽</b><small>за ночь на двоих,<br>+1&nbsp;000&nbsp;₽ за гостя</small></div><button class="btn" data-book="0">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
+          <p>Треугольный дом для пары или небольшой компании: двуспальная кровать наверху, диван-кровать, кухня с кофемашиной, терраса с видом на лес.</p>
+          <div class="cfoot"><div><small>от</small><b>8 000 ₽</b><small>за ночь на двоих,<br>далее +1&nbsp;000&nbsp;₽/гость</small></div><button class="btn" data-book="0">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
         </div>
       </article>
       <article class="card">
-        <button class="ph zoomable" data-set="b" aria-label="Фото Barnhouse"><img src="hero-barn.jpg" alt="Barnhouse вечером с гирляндами" loading="lazy"><span class="tag">Barnhouse</span><span class="cnt">6 фото</span></button>
+        <button class="ph zoomable" data-set="b" aria-label="Фото Barnhouse"><img src="hero-barn.jpg" alt="Barnhouse вечером с гирляндами" loading="lazy"><span class="tag">Barnhouse</span><span class="cnt">7 фото</span></button>
         <div class="body">
           <h3>Barnhouse</h3>
           <div class="specs"><span>до 8 гостей</span><span>3 спальни</span><span>стол на 6–8 гостей</span></div>
           <p>Просторный дом для большой компании: три спальни, кухня-гостиная с большим столом и терраса с гирляндами для долгих вечеров.</p>
-          <div class="cfoot"><div><small>от</small><b>10 000 ₽</b><small>за ночь на двоих,<br>+1&nbsp;000&nbsp;₽ за гостя</small></div><button class="btn" data-book="1">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
+          <button class="inc-btn" data-inc="1">Что входит в аренду <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <div class="cfoot"><div><small>от</small><b>10 000 ₽</b><small>за ночь на двоих,<br>далее +1&nbsp;000&nbsp;₽/гость</small></div><button class="btn" data-book="1">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div>
         </div>
       </article>
     </div>
@@ -488,7 +502,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
         <div class="body">
           <h3>Прокат квадроциклов</h3>
           <div class="specs"><span>с инструктором</span><span>по лесным тропам</span><span>круглый год</span></div>
-          <p>Прогулки по сосновому бору: только лес, никаких дорог. Адреналин днём, баня и тишина вечером.</p>
+          <p>Маршруты только по лесу, никаких дорог. Адреналин днём, баня и тишина вечером.</p>
           <div class="cfoot"><div><b>3 000 ₽</b><small>за час с человека</small></div><a class="btn" href="tel:+79056880611">Позвонить <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a></div>
         </div>
       </article>
@@ -506,12 +520,11 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
         <div class="body">
           <h3>Баня</h3>
           <div class="specs"><span>до 6 гостей</span><span>от 3 часов</span><span>рядом с домами</span></div>
-          <p>Баня для компании в двух шагах от домов. После парилки можно выйти прямо к соснам.</p>
+          <p>Баня для компании в двух шагах от домов. После парилки сразу на свежий воздух.</p>
           <div class="cfoot"><div><small>от</small><b>1 000 ₽</b><small>за час</small></div><a class="btn" href="tel:+79056880611">Позвонить <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a></div>
         </div>
       </article>
     </div>
-    <div class="extra"><div><b>Праздник под ключ</b><span>Свечи, цветы и сервировка к свиданию или празднику.</span></div><a class="btn line" href="tel:+79056880611">Обсудить</a></div>
   </div>
 </section>
 
@@ -531,6 +544,12 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
       <h2>Место, куда хочется вернуться</h2>
       <p class="lead">«Медвежий угол» расположен в зоне рекреации в Грязинском районе. Вокруг сосны, рядом водоём и пляж. Дома новые и чистые. Мангал и шампура уже ждут.</p>
       <div><a class="btn line" href="#gallery">Смотреть галерею</a></div>
+      <div class="party">
+        <span class="chip">Праздник под ключ</span>
+        <h3>Свидание, день рождения или предложение</h3>
+        <p>Свечи, цветы и красивая сервировка. Всё подготовим к вашему приезду, вам останется только праздновать.</p>
+        <a class="btn" href="tel:+79056880611">Обсудить праздник <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -538,12 +557,12 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
 <!-- 4. ВПЕЧАТЛЕНИЯ -->
 <section class="sec" id="feel" style="padding-top:0">
   <div class="wrap">
-    <div class="head"><h2>Что вы здесь почувствуете</h2><p class="lead">Телефон остаётся в кармане, а вы просто смотрите на сосны.</p></div>
+    <div class="head"><h2>Что вы здесь почувствуете</h2><p class="lead">Прогулки, баня, вечера у огня и разговоры, на которые в городе вечно не хватает времени.</p></div>
     <div class="exp">
-      <div class="ex" style="grid-column:span 7"><img src="hammock.jpg" alt="Гамак между соснами" loading="lazy"><div class="in"><h3>Единение с лесом</h3><p>Сосновый бор, гамак между стволами, водоём рядом. Утром будят птицы, а не будильник.</p></div></div>
+      <div class="ex" style="grid-column:span 7"><img src="hammock.jpg" alt="Гамак между соснами" loading="lazy"><div class="in"><h3>Единение с лесом</h3><p>Гамак между деревьями, водоём и пляж рядом. Утром будят птицы, а не будильник.</p></div></div>
       <div class="ex" style="grid-column:span 5"><img src="match.jpg" alt="Зажигают свечи на столе с пионами" loading="lazy"><div class="in"><h3>Тёплый вечер</h3><p>Свечи, пионы, ужин в кругу своих. Поможем с декором к свиданию или празднику.</p></div></div>
       <div class="ex" style="grid-column:span 5"><img src="coffee.jpg" alt="Кофемашина наливает кофе" loading="lazy"><div class="in"><h3>Всё уже готово</h3><p>Свежее бельё, кофе в кофемашине, мангал и шампуры. Вы приезжаете отдыхать.</p></div></div>
-      <div class="ex" style="grid-column:span 7"><img src="toast.jpg" alt="Две подруги на террасе A-frame с бокалами" loading="lazy"><div class="in"><h3>Время для своих</h3><p>Разговоры до заката на террасе. Никто не торопит, а сосны вокруг заглушают городской шум.</p></div></div>
+      <div class="ex" style="grid-column:span 7"><img src="toast.jpg" alt="Две подруги на террасе A-frame с бокалами" loading="lazy"><div class="in"><h3>Время для своих</h3><p>Разговоры до заката на террасе. Никто не торопит, а городской шум остаётся далеко.</p></div></div>
     </div>
   </div>
 </section>
@@ -560,18 +579,18 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
 <!-- этапы -->
 <section class="sec" style="padding-top:0">
   <div class="wrap">
-    <div class="head"><h2>Ваш путь к тишине</h2></div>
+    <div class="head"><h2>Как забронировать</h2></div>
     <div class="steps">
-      <div class="st"><i>1</i><b>Выбор</b><span>A-frame для двоих или Barnhouse для компании. Стоимость видна сразу.</span></div>
-      <div class="st"><i>2</i><b>Бронь</b><span>Один звонок, и даты ваши. Сразу добавим баню, беседку или декор.</span></div>
-      <div class="st"><i>3</i><b>Заезд</b><span>С 15:00 до 16:00. Наберите «Медвежий угол» в Яндекс Навигаторе.</span></div>
-      <div class="st"><i>4</i><b>Тишина</b><span>Сосны, баня, огонь в мангале. Выезд до 12:00, но уезжать не захочется.</span></div>
+      <div class="st"><i>1</i><b>Даты</b><span>Выберите на сайте даты заезда и выезда.</span></div>
+      <div class="st"><i>2</i><b>Домик</b><span>Выберите свободный дом: A&#8209;frame или Barnhouse.</span></div>
+      <div class="st"><i>3</i><b>Предоплата 30%</b><span>Оплатите онлайн всего 30% стоимости, и дом закреплён за вами.</span></div>
+      <div class="st"><i>4</i><b>Заезд</b><span>В день заезда подписываем договор, остаток оплачиваете на месте. Заезд с 15:00 до 16:00.</span></div>
     </div>
   </div>
 </section>
 
 <!-- приложение для гостей -->
-<section class="sec appx" id="app" style="padding-top:0" data-live="0">
+<section class="sec appx" id="app" style="padding-top:0" data-live="0" hidden>
   <div class="wrap">
     <div class="appx-box">
       <div class="appx-hd">
@@ -638,7 +657,20 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
       <div class="mrow"><span id="gl">Гостей, до 4</span><div class="step"><button data-g="-1" aria-label="Меньше гостей">−</button><b id="guests">2</b><button data-g="1" aria-label="Больше гостей">+</button></div></div>
       <div class="mtotal"><span>Итого</span><b id="total">16 000 ₽</b></div>
       <a class="btn" href="tel:+79056880611">Позвонить и забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
-      <p class="mnote">8 905 688-06-11 или 8 960 144-77-55. Подтвердим даты по телефону, для брони — предоплата 30%. Бесплатная отмена за 3 дня до заезда.</p>
+      <p class="mnote">8 905 688-06-11 или 8 960 144-77-55. Подтвердим даты по телефону, для брони — предоплата 30%. Бесплатная отмена не позднее чем за 7 дней до заезда.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="im" hidden role="dialog" aria-modal="true" aria-labelledby="imTitle">
+  <div class="sheet">
+    <button class="mx" id="imX" aria-label="Закрыть"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="mph"><img id="imImg" src="hero-barn.jpg" alt=""><div class="mt"><h3 id="imTitle">Barnhouse</h3><span id="imCap"></span></div></div>
+    <div class="mbody">
+      <div class="mh">Что входит в аренду</div>
+      <div class="inc" id="imList"></div>
+      <button class="btn" id="imBook">Забронировать <span class="ar"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button>
     </div>
   </div>
 </div>
@@ -658,7 +690,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
 
 <div class="drawer" id="drawer" hidden role="dialog" aria-label="Меню">
   <button class="x" id="drawerX" aria-label="Закрыть меню"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <a href="#houses">Дома</a><a href="#houses" data-book="0">Бронирование</a><a href="#services">Услуги</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#app">Приложение</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
+  <a href="#houses">Дома</a><a href="#houses" data-book="0">Бронирование</a><a href="#services">Услуги</a><a href="#feel">Впечатления</a><a href="#gallery">Галерея</a><a href="#faq">Правила</a><a href="#contacts">Контакты</a>
   <a href="tel:+79056880611" style="color:var(--gold-text)">8 905 688-06-11</a>
 </div>
 
@@ -743,15 +775,32 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
   }
 
   // вопросы
-  var FAQ=[['Можно с питомцами?','К сожалению, нет: с животными на базу нельзя. Штраф за нарушение 10 000 ₽.'],['Есть мангал и шампуры?','Да, всё есть. Приезжайте с мясом, остальное найдётся.'],['Можно устроить праздник?','Да, поможем с декором для дня рождения, предложения или годовщины.'],['До скольки можно шуметь?','Громкая музыка на улице до 22:00, дальше в лесу тишина. Штраф за нарушение 10 000 ₽.'],['Во сколько заезд и выезд?','Заезд с 15:00 до 16:00, выезд до 12:00. Ранний заезд или поздний выезд +2 000 ₽.'],['Нужна ли предоплата и можно ли отменить бронь?','Для подтверждения брони вносится предоплата 30%, остаток — при заезде. При отмене не позднее чем за 3 дня до заезда предоплата возвращается полностью, при более поздней отмене удерживаем не больше стоимости одних суток. Подробно — на странице «Оплата и возврат» внизу сайта.'],['Можно поставить палатку или позвать друзей?','На территории только гости, указанные в брони. Палатки и дополнительные спальные места запрещены.']];
+  var FAQ=[['Можно с питомцами?','К сожалению, нет: с животными на базу нельзя. Штраф за нарушение 10 000 ₽.'],['Есть мангал и шампуры?','Да, всё есть. Приезжайте с мясом, остальное найдётся.'],['Можно устроить праздник?','Да, поможем с декором для дня рождения, предложения или годовщины.'],['Можно устроить шумную вечеринку?','Шумные вечеринки возможны до 22:00 и только если вы бронируете оба дома сразу. Штраф за нарушение 10 000 ₽.'],['Во сколько заезд и выезд?','Заезд с 15:00 до 16:00, выезд до 12:00. Ранний заезд или поздний выезд +2 000 ₽.'],['Нужна ли предоплата и можно ли отменить бронь?','Для подтверждения брони вносится предоплата 30%, остаток — при заезде. При отмене не позднее чем за 7 дней до заезда предоплата возвращается полностью, при более поздней отмене удерживаем не больше стоимости одних суток. Подробно — на странице «Оплата и возврат» внизу сайта.'],['Можно поставить палатку или позвать друзей?','На территории только гости, указанные в брони. Палатки и дополнительные спальные места запрещены.']];
   $('qa').innerHTML=FAQ.map(function(f,i){return '<button class="q" aria-expanded="'+(i===0)+'" data-q="'+i+'">'+f[0]+'<i>+</i></button><p class="a"'+(i===0?'':' hidden')+'>'+f[1]+'</p>'}).join('');
   $('qa').onclick=function(e){var b=e.target.closest('.q');if(!b)return;var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!o);b.nextElementSibling.hidden=o};
+
+
+  // что входит в аренду
+  var INC={1:{t:'Barnhouse',img:'hero-barn',cap:'до 8 гостей, 3 спальни',g:[
+    ['Спальные места',['три раздельные спальни, в каждой большая двуспальная кровать с чистым постельным бельём','двуспальный раскладной диван в кухне-гостиной, ещё 2 спальных места']],
+    ['Кухня',['холодильник с морозильной камерой, чайник, индукционная варочная панель на 2 конфорки','посуда чёрного и белого цвета, столовые приборы, стеклянный салатник','три кастрюли разных размеров, сковорода, разделочные доски, шампуры','чашки для эспрессо и для чая или кофе, стаканы, бокалы для красного и белого вина','зерновая кофемашина с зёрнами, чай, соль, сахар, подсолнечное масло, соевый соус, приправы','обеденный стол на 6 персон']],
+    ['Санузел',['душевой уголок, туалет, подвесная тумба с раковиной, бойлер, фен','полотенца, ватные палочки и диски, одноразовые зубные щётки','гель для душа и шампунь, мыло, туалетная бумага, освежитель воздуха']],
+    ['Комфорт',['Wi-Fi, телевизор со Smart TV','конвекторы отопления, тепловая завеса, кондиционер']]]}};
+  var lastI=null;
+  function openInc(h){var d=INC[h];if(!d)return;lastI=document.activeElement;$('imImg').src=d.img+'.jpg';$('imImg').alt=d.t;$('imTitle').textContent=d.t;$('imCap').textContent=d.cap;
+    $('imList').innerHTML=d.g.map(function(x){return '<h4>'+x[0]+'</h4><ul>'+x[1].map(function(i){return '<li>'+i+'</li>'}).join('')+'</ul>'}).join('');
+    $('imBook').onclick=function(){closeInc();openBook(+h)};$('im').hidden=false;document.body.style.overflow='hidden';$('imX').focus()}
+  function closeInc(){$('im').hidden=true;document.body.style.overflow='';if(lastI)lastI.focus()}
+  $('imX').onclick=closeInc;
+  $('im').addEventListener('click',function(e){if(e.target===this)closeInc()});
+  document.querySelectorAll('[data-inc]').forEach(function(b){b.onclick=function(){openInc(b.dataset.inc)}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('im').hidden)closeInc()});
 
   // галерея и просмотр
   var G=[['match','Вечер начинается'],['chairs-sun','Терраса A-frame'],['candles','Свечи и пионы'],['friends','Разговоры до заката'],['aframe-view','Сосны в окне A-frame'],['coffee','Кофе на рассвете'],['toast','За встречу'],['bath-mirror','Ванная'],['barn-hall','Гостиная Barnhouse'],['hammock','Гамак между соснами'],['aframe-loft','Спальня под крышей'],['bed-curtain','Тишина и лён'],
          ['barn-dinner','Ужин на компанию'],['terrace','Нарды на террасе'],['garland-night','Гирлянды ночью'],['barn-kitchen','Кухня'],['aframe-flowers','Цветы к приезду'],['grill','Гриль'],['bed-lamp','Свет у кровати'],['bath-shower','Душ'],['barn-garland','Огни Barnhouse'],['aframe-table','Стол в A-frame'],['bulb','Тёплый свет'],['gazebo-flowers','Беседка']];
-  var SETS={a:[['aframe-hammock','A-frame и гамак'],['chairs-sun','Терраса'],['aframe-view','Сосны в окне'],['aframe-loft','Спальня под крышей'],['aframe-table','Стол у окна'],['bath-mirror','Ванная'],['aframe-flowers','Цветы к приезду']],
-            b:[['hero-barn','Barnhouse вечером'],['dinner-view','Ужин с видом на лес'],['barn-hall','Гостиная'],['barn-dinner','Стол на компанию'],['barn-kitchen','Кухня'],['barn-garland','Огни на террасе']],
+  var SETS={a:[['aframe-hammock','A-frame и гамак'],['chairs-sun','Терраса'],['aframe-view','Сосны в окне'],['aframe-loft','Спальня под крышей'],['aframe-table','Стол у окна'],['aframe-flowers','Цветы к приезду']],
+            b:[['hero-barn','Barnhouse вечером'],['dinner-view','Ужин с видом на лес'],['barn-hall','Гостиная'],['barn-dinner','Стол на компанию'],['barn-kitchen','Кухня'],['barn-garland','Огни на террасе'],['bath-mirror','Санузел']],
             c:[['gazebo-flowers','Беседка с цветами'],['grill','Гриль'],['terrace','Вечер на террасе']]};
   var more=false,cur=[],ci=0,img=null,last=null;
   function gal(){var list=more?G:G.slice(0,12);
@@ -784,7 +833,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
     h.classList.add('sh');
   });
   // появление волной
-  [['.perk',0.08],['.card',0.1],['.ex',0.08],['.st',0.08],['.num',0.08],['.sv',0.06],['.split .ph',0],['.head p',0.1],['.appx-hd .lead',0.1],['.appx-li',0.08],['.appx-cta',0],['.extra',0]].forEach(function(g){
+  [['.perk',0.08],['.card',0.1],['.ex',0.08],['.st',0.08],['.num',0.08],['.sv',0.06],['.split .ph',0],['.head p',0.1],['.appx-hd .lead',0.1],['.appx-li',0.08],['.appx-cta',0],['.party',0]].forEach(function(g){
     document.querySelectorAll(g[0]).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(i%4)*g[1]+'s')});
   });
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.12});
