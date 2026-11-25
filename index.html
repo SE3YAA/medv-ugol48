@@ -498,7 +498,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
     </div>
     <div class="cards">
       <article class="card">
-        <div class="ph art"><svg viewBox="0 0 160 110" aria-hidden="true"><circle cx="38" cy="80" r="20"/><circle cx="38" cy="80" r="7"/><circle cx="124" cy="80" r="20"/><circle cx="124" cy="80" r="7"/><path d="M18 62l22-14h24l10-10h22l8 10h22l14 12"/><path d="M58 80h46M40 48l-6-10h-12M96 38l10-18h14M100 20h18"/><path d="M64 48l8 14h24"/></svg><span class="tag">Квадроциклы</span></div>
+        <button class="ph zoomable" data-set="q" aria-label="Посмотреть фотографии квадроциклов (5 фото)"><img src="atv-cover.webp" alt="Два квадроцикла на осенней лесной тропе" loading="lazy" decoding="async"><span class="tag">Квадроциклы</span><span class="cnt">5 фото</span></button>
         <div class="body">
           <h3>Прокат квадроциклов</h3>
           <div class="specs"><span>с инструктором</span><span>по лесным тропам</span><span>круглый год</span></div>
@@ -704,7 +704,7 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
 <script>
 (function(){
   var $=function(id){return document.getElementById(id)};
-  var IM=window.IM||function(n){return n+'.jpg'};
+  var IM=window.IM||function(n){return /\.(?:jpe?g|png|webp|avif)$/i.test(n)?n:n+'.jpg'};
 
   // тема
   var root=document.documentElement,meta=document.querySelector('meta[name="theme-color"]');
@@ -801,7 +801,8 @@ html.fx .p-c{--y:calc(70px*(1 - var(--ap,1)))}
          ['barn-dinner','Ужин на компанию'],['terrace','Нарды на террасе'],['garland-night','Гирлянды ночью'],['barn-kitchen','Кухня'],['aframe-flowers','Цветы к приезду'],['grill','Гриль'],['bed-lamp','Свет у кровати'],['bath-shower','Душ'],['barn-garland','Огни Barnhouse'],['aframe-table','Стол в A-frame'],['bulb','Тёплый свет'],['gazebo-flowers','Беседка']];
   var SETS={a:[['aframe-hammock','A-frame и гамак'],['chairs-sun','Терраса'],['aframe-view','Сосны в окне'],['aframe-loft','Спальня под крышей'],['aframe-table','Стол у окна'],['aframe-flowers','Цветы к приезду']],
             b:[['hero-barn','Barnhouse вечером'],['dinner-view','Ужин с видом на лес'],['barn-hall','Гостиная'],['barn-dinner','Стол на компанию'],['barn-kitchen','Кухня'],['barn-garland','Огни на террасе'],['bath-mirror','Санузел']],
-            c:[['gazebo-flowers','Беседка с цветами'],['grill','Гриль'],['terrace','Вечер на террасе']]};
+            c:[['gazebo-flowers','Беседка с цветами'],['grill','Гриль'],['terrace','Вечер на террасе']],
+            q:[['atv-forest-pair.webp','Два квадроцикла в сосновом лесу'],['atv-glamping-cabin.webp','Квадроцикл возле домика A-frame'],['atv-lakeside-pair.webp','Квадроциклы у лесного озера'],['atv-lakeside-close.webp','Квадроцикл у воды'],['atv-forest-lights.webp','Квадроцикл под гирляндами']]};
   var more=false,cur=[],ci=0,img=null,last=null;
   function gal(){var list=more?G:G.slice(0,12);
     $('gal').innerHTML=list.map(function(p,i){return '<button class="gi" data-i="'+i+'" aria-label="Открыть фото: '+p[1]+'"><img src="'+IM(p[0])+'" alt="'+p[1]+'" loading="lazy"></button>'}).join('');
